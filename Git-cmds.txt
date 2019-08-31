@@ -1,0 +1,30 @@
+1)git config --global user.name "ABPR"
+2)git config --global user.email "pavanmca40@gmail.com"
+3)git c
+onfig --global push.default "simple"
+4)git config -list ->To verify these are set
+5)git config --global core.editor emacs.(it's vim by default)
+6)git init --bare-->To create central repository with .git extension
+7)git clone <remote><local>-->To create local workspace by using central repository created.
+NOTE:Bare repository :-/c/Almighty/Git/ then cd .. and then clone it.->git clone central.git workspace01.
+To get started create files in a non-bare repository->touch 1.java
+=>git add 1.java =>git commit -m "This is first commit". =>ls
+=>Make some changes to file:->echo "This is first line" ->1.java
+=>git status & git add 1.java &git commit -m "Our second commit" & git show->gives complete detils os snapshot of commit id.
+=>git log->shows list of commit id's. (&) git push->to share your files to others ,push them to central repository.
+=>To create new workspace again->git clone central.git/ workspace02->where this workspace will be having all files and commit id's which are there in central repository.
+==> STEPS TO INSTALL GIT IN LINUX(CentOS)
+1)sudo yum istall "Development Tools"
+2)sudo yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
+3)sudo yum install wget
+4)wget aand location of git fiel copied form inernet and paste it on terminal. At end add -O git.tar.gz.
+5)Extract the tar filr & change directory ->cd git-2.7.2 & Install autoconf->sudo yum install autoconf
+6)make configure->./configure --prefix=/usr & 7)sudo make install-doc install-html install-info=>which copies all built progs and libraries into correct location.
+8)yum groupinstall  "Development Tools" & -> make all doc info ->sudo make install-doc install-html install-info.  9)You can start using git by providing your details..
+===>INSTALL GIT USING DEFAULT VERSION:-
+1)yum install git 2) git config --global user.name "pavan" and email. 3)git config --list 4)mkdir ABPR 
+5)cd ABPR 6)git init ->/root/.git/ 7)git add README file 8)git commit -m "first comment"  9) git remote add origin https://github.com/PAVANMCA40/ABPR/.git
+10) git clone /root/ABPR/.git  workspace01<--name of workspace. =>cd workspace01 --->Here you can create and edit your file and push into central repository..
+Central repository:-/root/ABPR/.git/  (and) Workspace repoitory:-/root/ABPR/.git/workspace01.(DONE).
+
+

@@ -1,0 +1,49 @@
+1)docker run < image> -->Docker will create a container (Running as a process in host OS).
+2)docker run -t < image> --> Terminal session will get attached/conneted to container.
+3)docker run  -i -t < image> -->You are telling to container that  you want to have terminal in interactive way.(you can run all commamds as a single command).
+4)docker run -i -t ubuntu //bin/bash (Host will be CentOS and Virtual host will be Ubuntu).
+-->If it is not found, then it will pull from Docker registry and downloads automatically.
+5)Run this command and check whether it has created (or) not -->cat/etc/*os*rel*->shows info about virtual OS ubuntu created.
+6)docker run -it ubuntu ->cd /tmp->touch ubuntucontainer->ls .go( back to hostmachine and check you can't see file bcoz both are separate from each other).
+7) docker run -it ubuntu /bin/bash-->this cmd creates a new container and hostname will change bcoz, every container is different from each other.
+8)hostname->echo $SHELL->ps -ef
+9) docker run  --name testcont -it ubuntu /bin/bash -> To reuse the same container and remember the conatainer name.
+10)create one file and exit -->start docker again and check for file created in same container by logging again..->docker start testcont -->docker attach testcont --->cd /tmp --->ls ..
+11) docker run -d <container name>-->It doesn't attach to terminal,it wil run on background.
+-->/bin/sh -c "while true; do echo hello world; sleep 1 done"
+12)docker logs -f <name of container>-->shows whatever running in a container in background. & docker ps-->shows running processes in container.(docker ps -a)->lists all processes.
+13)To create daemonized container->docker --run pavan -d ubuntu //bin/bash/sh -c "while true; do echo hello world; sleep 1 done"
+14)docker ps->shows all processes, ps -q->shows container id,ps -a->lists all container,docker rm->To delete a container.
+15)docker top <container id>->shows details of container.
+16)docker inspect < container id>-->lists O/P in json format about propertois of container
+17)docker inspect --format '{{.Network Settings.IPAddress}}'<containerid>-->shows only particular property details.
+18)Run a cmd in running conatainer->docker exec <container id> touch /tmp/testfile
+Go inside container and check for file created->cd /tmp->ls->testfiel.
+19)To do same in background->docker exec -d ->ls-->to see list of files in container.
+19)docker stats <container id>-->shows live streaming of resource utilization of a container.
+20)docker events-->lists all events in docker (&)->docker events --filter event="attach"-->shows running event. (&) docker events  --since '1h'->shows all events since last one hour.
+21)Exposing our containers with port redirects:-Ports are private by default.
+-->docker run -d -p 80:80 nginx:latest->which installs nginx server and ->docker ps
+-->If you go to browser and type your hostname, there you will get welcome page of nginx server.(Here you can access).-->)If you run without -p option-->It will expose all ports as public..
+22)Docker volumes:-Create two containers in machine->create some files /usr/data and try to share files.U cal aso share files b/w host machine and container
+i)Volumes declared from cmd-line:-->docker run -it -v /usr/data ubuntu
+ii)Sharing volumes across containers:-->docker run --privileged=true -it -volumes-from test1 ubuntu
+iii)Sharing volumes across containers:-->docker run --privileged=true -it -volumes-from test1 -volumes from test2 ubuntu
+iv)Sharing a directory b/w host and a container:-->docker run -it -name test1 -v /home/user/Docker:/data ubuntu
+23)docker rename->To rename docker, To search for images-->docker search <name of  image>
+24)Building images interactively:-
+Create docker:-docker run -name imgtemplate -it ubuntu /bin/bash (&) Install vim->cd /tmp->ls->vim test11->add some text and save.-->From this container create new image and exit
+-->Then docker commit imgtemplate-->docker images..
+To gine tagging to images:-docker tag d7e092cda2b5 <myimage>.
+25)Bililding Docker images :-(Automatically)-->mkdir test ->cd test & create one file
+FROM ubuntu ,run apt-get update,Install vim
+i)docker build -t myimg01 .-->Building docker file from existing file.
+ii)docker run -it myFirstimage-->You can run anything inside this docker file
+iii)docker history myFirstimage->lists all layers composing an image.
+26)Building docker instruction:-RUN and CMD
+%CMD["echo","Hi"]->docker build -rm -t="adam/dockerfiles"->docker run -it adam/dockerfiles.
+i)Entrypoint :-Arguements will be passed as we specify->%ENTRYPOINT["echo","Hi"]
+ii)WORKDIR:-Provide a way to set working dir for container and ENTRYPOINT/CMD  to be executed when a container is launched from image.->%WORKDIR /usr/bin
+iii)You can override working directory at runtime with -w flag
+->docker run -it -w /var adam/dockerfiles. 
+27)i)Copy,ADD,EXPOSE,MAINTAINER.
