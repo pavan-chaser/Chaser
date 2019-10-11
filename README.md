@@ -1,2 +1,2 @@
-# linux-redhat
-Mount and unmounting volumes and swap memory 
+# Magento-installation-on-centos7
+Magento-installation-on-centos7(website)
