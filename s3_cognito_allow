@@ -1,0 +1,78 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListYourObjects",
+            "Effect": "Allow",
+            "Action": [
+                "mobileanalytics:PutEvents",
+                "cognitosync:",
+                "cognitoidentity:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pavan-cognito-lab"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "cognito/pavan-cognito"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "ReadWriteDeleteYourObjects",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pavan-cognito-lab/cognito/pavan-cognito/${cognito-identity.amazonaws.com:sub}",
+                "arn:aws:s3:::pavan-cognito-lab/cognito/pavan-cognito/${cognito-identity.amazonaws.com:sub}/*"
+            ]
+        }
+    ]
+}
+
+
+===> Another role
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ListYourObjects",
+            "Effect": "Allow",
+            "Action": [
+                "mobileanalytics:PutEvents",
+                "cognitosync:",
+                "cognitoidentity:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pavan-cognito-lab"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "cognito/pavan-cognito"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "ReadWriteDeleteYourObjects",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::pavan-cognito-lab/cognito/pavan-cognito/${cognito-identity.amazonaws.com:sub}",
+                "arn:aws:s3:::pavan-cognito-lab/cognito/pavan-cognito/${cognito-identity.amazonaws.com:sub}/*"
+            ]
+        }
+    ]
+}
