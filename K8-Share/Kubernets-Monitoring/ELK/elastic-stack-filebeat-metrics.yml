@@ -1,0 +1,31 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-01-03T16:40:42Z"
+  labels:
+    app: filebeat
+    chart: filebeat-1.7.0
+    heritage: Tiller
+    release: elastic-stack
+  name: elastic-stack-filebeat-metrics
+  namespace: default
+  resourceVersion: "82977"
+  selfLink: /api/v1/namespaces/default/services/elastic-stack-filebeat-metrics
+  uid: c852a922-2e47-11ea-9b76-026e367e89d6
+spec:
+  clusterIP: 100.68.162.41
+  ports:
+  - name: metrics
+    port: 9479
+    protocol: TCP
+    targetPort: 9479
+  selector:
+    app: filebeat
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

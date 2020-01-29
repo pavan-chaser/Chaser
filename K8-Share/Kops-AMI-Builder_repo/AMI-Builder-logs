@@ -1,0 +1,1583 @@
+[Container] 2019/11/07 15:31:52 Waiting for agent ping 
+[Container] 2019/11/07 15:31:54 Waiting for DOWNLOAD_SOURCE 
+[Container] 2019/11/07 15:31:54 Phase is DOWNLOAD_SOURCE 
+[Container] 2019/11/07 15:31:54 CODEBUILD_SRC_DIR=/codebuild/output/src721464974/src 
+[Container] 2019/11/07 15:31:54 YAML location is /codebuild/output/src721464974/src/buildspec.yml 
+[Container] 2019/11/07 15:31:54 Processing environment variables 
+[Container] 2019/11/07 15:31:54 Moving to directory /codebuild/output/src721464974/src 
+[Container] 2019/11/07 15:31:54 Registering with agent 
+[Container] 2019/11/07 15:31:54 Phases found in YAML: 3 
+[Container] 2019/11/07 15:31:54  PRE_BUILD: 4 commands 
+[Container] 2019/11/07 15:31:54  BUILD: 1 commands 
+[Container] 2019/11/07 15:31:54  POST_BUILD: 5 commands 
+[Container] 2019/11/07 15:31:54 Phase complete: DOWNLOAD_SOURCE State: SUCCEEDED 
+[Container] 2019/11/07 15:31:54 Phase context status code:  Message:  
+[Container] 2019/11/07 15:31:54 Entering phase INSTALL 
+[Container] 2019/11/07 15:31:54 Phase complete: INSTALL State: SUCCEEDED 
+[Container] 2019/11/07 15:31:54 Phase context status code:  Message:  
+[Container] 2019/11/07 15:31:54 Entering phase PRE_BUILD 
+[Container] 2019/11/07 15:31:54 Running command echo "Installing Packer" 
+Installing Packer 
+ 
+[Container] 2019/11/07 15:31:54 Running command curl -o packer.zip https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip && unzip packer.zip 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current 
+                                 Dload  Upload   Total   Spent    Left  Speed 
+ 
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 
+100 26.3M  100 26.3M    0     0  60.6M      0 --:--:-- --:--:-- --:--:-- 60.7M 
+Archive:  packer.zip 
+  inflating: packer                   
+ 
+[Container] 2019/11/07 15:31:55 Running command echo "Validating Packer template" 
+Validating Packer template 
+ 
+[Container] 2019/11/07 15:31:55 Running command ./packer validate packer_cis.json 
+Template validated successfully. 
+ 
+[Container] 2019/11/07 15:31:56 Phase complete: PRE_BUILD State: SUCCEEDED 
+[Container] 2019/11/07 15:31:56 Phase context status code:  Message:  
+[Container] 2019/11/07 15:31:56 Entering phase BUILD 
+[Container] 2019/11/07 15:31:56 Running command ./packer build -color=false packer_cis.json | tee build.log 
+==> AWS AMI Builder - CIS: Prevalidating AMI Name: Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56 
+    AWS AMI Builder - CIS: Found Image ID: ami-ac442ac3 
+==> AWS AMI Builder - CIS: Creating temporary keypair: packer_5dc438ec-3e41-84ad-08ef-8acb3395184e 
+==> AWS AMI Builder - CIS: Creating temporary security group for this instance: packer_5dc438ed-0ae3-3380-4e25-e89376d5ef12 
+==> AWS AMI Builder - CIS: Authorizing access to port 22 from 0.0.0.0/0 in the temporary security group... 
+==> AWS AMI Builder - CIS: Launching a source AWS instance... 
+==> AWS AMI Builder - CIS: Adding tags to source instance 
+    AWS AMI Builder - CIS: Adding tag: "Name": "Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56" 
+    AWS AMI Builder - CIS: Adding tag: "Name": "Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56" 
+    AWS AMI Builder - CIS: Instance ID: i-00edf09755d44594d 
+==> AWS AMI Builder - CIS: Waiting for instance (i-00edf09755d44594d) to become ready... 
+==> AWS AMI Builder - CIS: Using ssh communicator to connect: 3.122.238.152 
+==> AWS AMI Builder - CIS: Waiting for SSH to become available... 
+==> AWS AMI Builder - CIS: Connected to SSH! 
+==> AWS AMI Builder - CIS: Provisioning with shell script: /tmp/packer-shell819384168 
+    AWS AMI Builder - CIS: Collecting ansible==2.7.9 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/c0/01/2c7e45c7eea540c4e4238cd404ccc950c0ef61ebf8d29d04b191caba4fb8/ansible-2.7.9.tar.gz (11.8MB) 
+    AWS AMI Builder - CIS: Requirement already satisfied: jinja2 in /usr/lib/python2.7/dist-packages (from ansible==2.7.9) 
+    AWS AMI Builder - CIS: Requirement already satisfied: PyYAML in /usr/lib64/python2.7/dist-packages (from ansible==2.7.9) 
+    AWS AMI Builder - CIS: Requirement already satisfied: paramiko in /usr/lib/python2.7/dist-packages (from ansible==2.7.9) 
+    AWS AMI Builder - CIS: Collecting cryptography (from ansible==2.7.9) 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/e2/67/4597fc5d5de01bb44887844647ab8e73239079dd478c35c52d58a9eb3d45/cryptography-2.8-cp27-cp27mu-manylinux1_x86_64.whl (2.3MB) 
+    AWS AMI Builder - CIS: Requirement already satisfied: setuptools in /usr/lib/python2.7/dist-packages (from ansible==2.7.9) 
+    AWS AMI Builder - CIS: Requirement already satisfied: markupsafe in /usr/lib64/python2.7/dist-packages (from jinja2->ansible==2.7.9) 
+    AWS AMI Builder - CIS: Requirement already satisfied: pycrypto!=2.4,>=2.1 in /usr/lib64/python2.7/dist-packages (from paramiko->ansible==2.7.9) 
+    AWS AMI Builder - CIS: Requirement already satisfied: ecdsa>=0.11 in /usr/lib/python2.7/dist-packages (from paramiko->ansible==2.7.9) 
+    AWS AMI Builder - CIS: Collecting cffi!=1.11.3,>=1.8 (from cryptography->ansible==2.7.9) 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/93/5d/c4f950891251e478929036ca07b22f0b10324460c1d0a4434c584481db51/cffi-1.13.2-cp27-cp27mu-manylinux1_x86_64.whl (384kB) 
+    AWS AMI Builder - CIS: Requirement already satisfied: six>=1.4.1 in /usr/lib/python2.7/dist-packages (from cryptography->ansible==2.7.9) 
+    AWS AMI Builder - CIS: Collecting ipaddress; python_version < "3" (from cryptography->ansible==2.7.9) 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/c2/f8/49697181b1651d8347d24c095ce46c7346c37335ddc7d255833e7cde674d/ipaddress-1.0.23-py2.py3-none-any.whl 
+    AWS AMI Builder - CIS: Collecting enum34; python_version < "3" (from cryptography->ansible==2.7.9) 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/c5/db/e56e6b4bbac7c4a06de1c50de6fe1ef3810018ae11732a50f15f62c7d050/enum34-1.1.6-py2-none-any.whl 
+    AWS AMI Builder - CIS: Collecting pycparser (from cffi!=1.11.3,>=1.8->cryptography->ansible==2.7.9) 
+    AWS AMI Builder - CIS:   Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB) 
+    AWS AMI Builder - CIS: Installing collected packages: pycparser, cffi, ipaddress, enum34, cryptography, ansible 
+    AWS AMI Builder - CIS:   Running setup.py install for pycparser: started 
+    AWS AMI Builder - CIS:     Running setup.py install for pycparser: finished with status 'done' 
+    AWS AMI Builder - CIS:   Running setup.py install for ansible: started 
+    AWS AMI Builder - CIS:     Running setup.py install for ansible: finished with status 'done' 
+    AWS AMI Builder - CIS: Successfully installed ansible-2.7.9 cffi-1.13.2 cryptography-2.8 enum34-1.1.6 ipaddress-1.0.23 pycparser-2.19 
+    AWS AMI Builder - CIS: You are using pip version 9.0.1, however version 19.3.1 is available. 
+    AWS AMI Builder - CIS: You should consider upgrading via the 'pip install --upgrade pip' command. 
+==> AWS AMI Builder - CIS: Provisioning with Ansible... 
+    AWS AMI Builder - CIS: Uploading Playbook directory to Ansible staging directory... 
+    AWS AMI Builder - CIS: Creating directory: /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398 
+    AWS AMI Builder - CIS: Uploading main Playbook file... 
+    AWS AMI Builder - CIS: Uploading galaxy file... 
+    AWS AMI Builder - CIS: Uploading inventory file... 
+    AWS AMI Builder - CIS: Uploading role directories... 
+    AWS AMI Builder - CIS: Creating directory: /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/roles/common 
+    AWS AMI Builder - CIS: Executing Ansible Galaxy: cd /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398 && ansible-galaxy install -r /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/requirements.yaml -p /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/roles 
+    AWS AMI Builder - CIS: - downloading role 'cis-amazon-linux', owned by anthcourtney 
+    AWS AMI Builder - CIS: - downloading role from https://github.com/anthcourtney/ansible-role-cis-amazon-linux/archive/v1.1.8-beta.tar.gz 
+    AWS AMI Builder - CIS: - extracting anthcourtney.cis-amazon-linux to /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/roles/anthcourtney.cis-amazon-linux 
+    AWS AMI Builder - CIS: - anthcourtney.cis-amazon-linux (v1.1.8-beta) was installed successfully 
+    AWS AMI Builder - CIS: - downloading role 'aws-cloudwatch-logs-agent', owned by dharrisio 
+    AWS AMI Builder - CIS: - downloading role from https://github.com/dharrisio/ansible-role-aws-cloudwatch-logs-agent/archive/v0.1.1.tar.gz 
+    AWS AMI Builder - CIS: - extracting dharrisio.aws-cloudwatch-logs-agent to /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/roles/dharrisio.aws-cloudwatch-logs-agent 
+    AWS AMI Builder - CIS: - dharrisio.aws-cloudwatch-logs-agent (v0.1.1) was installed successfully 
+    AWS AMI Builder - CIS: Executing Ansible: cd /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398 && ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/playbook.yaml --extra-vars "packer_build_name=AWS AMI Builder - CIS packer_builder_type=amazon-ebs packer_http_addr="  -c local -i /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-64fe-9230-5be2009f4398/packer-provisioner-ansible-local341806389 
+    AWS AMI Builder - CIS: ·[1;35m [WARNING]: file /tmp/packer-provisioner-ansible-local/5dc438ec-7b3f-·[0m 
+    AWS AMI Builder - CIS: ·[1;35m64fe-9230-5be2009f4398/roles/anthcourtney.cis-amazon-·[0m 
+    AWS AMI Builder - CIS: ·[1;35mlinux/tasks/level-1/2.2.1.3.yml is empty and had no tasks to include·[0m 
+    AWS AMI Builder - CIS: ·[1;35m·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: PLAY [localhost] *************************************************************** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [Gathering Facts] ********************************************************* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [common : upgrade all packages] ******************************************* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Preflight - Fail if host is not suitable for this benchmark] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.1 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.1 - Ensure mounting of cramfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.2 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.3 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.3 - Ensure mounting of jffs2 filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.4 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.4 - Ensure mounting of hfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.4 - Ensure mounting of hfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.5 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.6 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.7 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.7 - Ensure mounting of udf filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.7 - Ensure mounting of udf filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.8 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.8 - Ensure mounting of vfat filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.1.8 - Ensure mounting of vfat filesystems is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.2 - Ensure separate partition exists for /tmp (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'tmpfs', u'mountpoint': u'/tmp', u'opts': u'rw,nosuid,nodev,noexec,relatime', u'fstype': u'tmpfs'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.3 - Ensure nodev option set on /tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.4 - Ensure nosuid option set on /tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.5 - Ensure noexec option set on /tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.8 - Ensure nodev option set on /var/tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.9 - Ensure nosuid option set on /var/tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.10 - Ensure noexec option set on /var/tmp partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.11 Ensure separate partition exists for /var/log (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'/dev/xvda2', u'mountpoint': u'/var/log', u'fstype': u'ext4'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.12 Ensure separate partition exists for /var/log/audit (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'/dev/xvda3', u'mountpoint': u'/var/log/audit', u'fstype': u'ext4'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.12 Ensure separate partition exists for /home (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'/dev/xvda4', u'mountpoint': u'/home', u'fstype': u'ext4'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.14 - Ensure nodev option set on /home partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'block_used': 320433, u'uuid': u'a8346192-0f62-444c-9cd0-655ed0d49a8b', u'size_total': 8318783488, u'block_total': 2030953, u'mount': u'/', u'block_available': 1710520, u'size_available': 7006289920, u'fstype': u'ext4', u'inode_total': 524288, u'inode_available': 479290, u'device': u'/dev/xvda1', u'inode_used': 44998, u'block_size': 4096, u'options': u'rw,noatime,data=ordered'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Gather facts of all mounts, including non-disk mounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.15 - Ensure nodev option set on /dev/shm partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'proc', u'mount': u'/proc', u'options': u'rw,relatime', u'fstype': u'proc'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'sysfs', u'mount': u'/sys', u'options': u'rw,relatime', u'fstype': u'sysfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devtmpfs', u'mount': u'/dev', u'options': u'rw,relatime,size=499564k,nr_inodes=124891,mode=755', u'fstype': u'devtmpfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'tmpfs', u'mount': u'/dev/shm', u'options': u'rw,relatime', u'fstype': u'tmpfs'})·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'/dev/xvda1', u'mount': u'/', u'options': u'rw,noatime,data=ordered', u'fstype': u'ext4'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'none', u'mount': u'/proc/sys/fs/binfmt_misc', u'options': u'rw,relatime', u'fstype': u'binfmt_misc'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Gather facts of all mounts, including non-disk mounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.16 - Ensure nosuid option set on /dev/shm partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'proc', u'mount': u'/proc', u'options': u'rw,relatime', u'fstype': u'proc'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'sysfs', u'mount': u'/sys', u'options': u'rw,relatime', u'fstype': u'sysfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devtmpfs', u'mount': u'/dev', u'options': u'rw,relatime,size=499564k,nr_inodes=124891,mode=755', u'fstype': u'devtmpfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'tmpfs', u'mount': u'/dev/shm', u'options': u'rw,nodev,relatime', u'fstype': u'tmpfs'})·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'/dev/xvda1', u'mount': u'/', u'options': u'rw,noatime,data=ordered', u'fstype': u'ext4'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'none', u'mount': u'/proc/sys/fs/binfmt_misc', u'options': u'rw,relatime', u'fstype': u'binfmt_misc'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Gather facts of all mounts, including non-disk mounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.17 - Ensure noexec option set on /dev/shm partition] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'proc', u'mount': u'/proc', u'options': u'rw,relatime', u'fstype': u'proc'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'sysfs', u'mount': u'/sys', u'options': u'rw,relatime', u'fstype': u'sysfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devtmpfs', u'mount': u'/dev', u'options': u'rw,relatime,size=499564k,nr_inodes=124891,mode=755', u'fstype': u'devtmpfs'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'device': u'tmpfs', u'mount': u'/dev/shm', u'options': u'rw,nosuid,nodev,relatime', u'fstype': u'tmpfs'})·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'/dev/xvda1', u'mount': u'/', u'options': u'rw,noatime,data=ordered', u'fstype': u'ext4'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'devpts', u'mount': u'/dev/pts', u'options': u'rw,relatime,gid=5,mode=620,ptmxmode=000', u'fstype': u'devpts'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'device': u'none', u'mount': u'/proc/sys/fs/binfmt_misc', u'options': u'rw,relatime', u'fstype': u'binfmt_misc'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.18 - Ensure sticky bit is set on all world-writable directories] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.1.19 - Disable autofs] ***************** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.2.1 - Verify that repositories are configured correctly] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: ·[1;35m [WARNING]: Consider using the yum module rather than running 'yum'.  If you·[0m 
+    AWS AMI Builder - CIS: ·[1;35mneed to use command because yum is insufficient you can add 'warn: false' to·[0m 
+    AWS AMI Builder - CIS: ·[1;35mthis command task or set 'command_warnings=False' in ansible.cfg to get rid of·[0m 
+    AWS AMI Builder - CIS: ·[1;35mthis message.·[0m 
+    AWS AMI Builder - CIS: ·[1;35m·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.2.2 - Ensure GPG keys are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: ·[1;35m [WARNING]: Consider using the yum, dnf or zypper module rather than running·[0m 
+    AWS AMI Builder - CIS: ·[1;35m'rpm'.  If you need to use command because yum, dnf or zypper is insufficient·[0m 
+    AWS AMI Builder - CIS: ·[1;35myou can add 'warn: false' to this command task or set 'command_warnings=False'·[0m 
+    AWS AMI Builder - CIS: ·[1;35min ansible.cfg to get rid of this message.·[0m 
+    AWS AMI Builder - CIS: ·[1;35m·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.2.3 - Get all repos on remote host] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.2.3 - Verify that gpgcheck is enabled in /etc/yum.conf] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.2.3 - Verify that gpgcheck is enabled for all repositories in /etc/yum.repos.d] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1362124334.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/epel.repo', u'xusr': False, u'atime': 1362124334.0, u'inode': 394345, u'isgid': False, u'size': 957, u'isdir': False, u'ctime': 1520405218.8379776, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1523471504.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/amzn-main.repo', u'xusr': False, u'atime': 1523471504.0, u'inode': 393738, u'isgid': False, u'size': 1014, u'isdir': False, u'ctime': 1573140822.750027, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1523471504.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/amzn-updates.repo', u'xusr': False, u'atime': 1523471504.0, u'inode': 393741, u'isgid': False, u'size': 1041, u'isdir': False, u'ctime': 1573140822.750027, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1362124334.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/epel-testing.repo', u'xusr': False, u'atime': 1362124334.0, u'inode': 394344, u'isgid': False, u'size': 1056, u'isdir': False, u'ctime': 1520405218.8379776, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1523471504.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/amzn-preview.repo', u'xusr': False, u'atime': 1523471504.0, u'inode': 393740, u'isgid': False, u'size': 1041, u'isdir': False, u'ctime': 1573140822.750027, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'rusr': True, u'uid': 0, u'rgrp': True, u'xoth': False, u'islnk': False, u'woth': False, u'nlink': 1, u'issock': False, u'mtime': 1523471504.0, u'gr_name': u'root', u'path': u'/etc/yum.repos.d/amzn-nosrc.repo', u'xusr': False, u'atime': 1523471504.0, u'inode': 393739, u'isgid': False, u'size': 327, u'isdir': False, u'ctime': 1573140822.750027, u'roth': True, u'isblk': False, u'xgrp': False, u'isuid': False, u'dev': 51713, u'wgrp': False, u'isreg': True, u'isfifo': False, u'mode': u'0644', u'pw_name': u'root', u'gid': 0, u'ischr': False, u'wusr': True})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.3.1 - Ensure AIDE is installed] ******** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.3.1 - Check that aide database exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.3.1 - Ensure aide database exists] ***** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=aide --init)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.3.2 - Ensure cron is installed] ******** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.3.2 - Create cron entry to run aide filesystem integrity check regularly] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.1 - Check if grub bootloader file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.1 - Set permissions on grub configuration] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.2 - Check if sysconfig init file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.2 - Ensure authentication is required for single-user mode] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.2 - Ensure authentication is required for single-user mode] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.3 - Check if sysconfig init file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.3 - Ensure interactive boot is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.4.3 - Ensure interactive boot is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.1 - Check if security limits file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.1 - Ensure core dumps are restricted] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.1 - Ensure core dumps are restricted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.1 - Prevent suid programs from dumping core] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.2 - Check if XD/NX support is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.2 - Ensure XD/NX support is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.2 - Ensure XD/NX support is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.5.3 - Ensure address space layout randomization is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if prelink binary exists] ********** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": true, "cmd": ["which", "prelink"], "delta": "0:00:00.002171", "end": "2019-11-07 15:35:45.497625", "msg": "non-zero return code", "rc": 1, "start": "2019-11-07 15:35:45.495454", "stderr": "which: no prelink in (/sbin:/bin:/usr/sbin:/usr/bin)", "stderr_lines": ["which: no prelink in (/sbin:/bin:/usr/sbin:/usr/bin)"], "stdout": "", "stdout_lines": []}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Restore prelinked binaries] ************** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Ensure prelink is disabled] ************** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Install the SE Linux requirements - libselinux-python] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Install the SE Linux requirements - policycoreutils-python] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)] *** 
+    AWS AMI Builder - CIS: ·[1;35m [WARNING]: Reboot is required to set SELinux state to enforcing·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: ·[1;35m·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.2 Ensure the SELinux state is enforcing (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.3 Ensure SELinux policy is configured (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.4 Ensure SETroubleshoot is not installed (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.4 Ensure SETroubleshoot is not installed (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.6 Ensure no unconfined daemons exist (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.6 Ensure no unconfined daemons exist (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.6.1.6 Ensure no unconfined daemons exist (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.1 - Ensure mingetty options are not used within motd] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.2 - Ensure local login warning banner is configured properly] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.3 - Ensure remote login warning banner is configured properly] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.4 - Ensure permissions on /etc/motd are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.5 - Ensure permissions on /etc/issue are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.7.1.6 - Ensure permissions on /etc/issue.net are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 1.8 - Ensure updates, patches, and additional security software are installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.1 - Ensure chargen services are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=chargen-dgram) => {"changed": false, "item": "chargen-dgram", "msg": "Could not find the requested service chargen-dgram: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=chargen-stream) => {"changed": false, "item": "chargen-stream", "msg": "Could not find the requested service chargen-stream: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.2 - Ensure daytime services are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=daytime-dgram) => {"changed": false, "item": "daytime-dgram", "msg": "Could not find the requested service daytime-dgram: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=daytime-stream) => {"changed": false, "item": "daytime-stream", "msg": "Could not find the requested service daytime-stream: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.3 - Ensure discard services are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=discard-dgram) => {"changed": false, "item": "discard-dgram", "msg": "Could not find the requested service discard-dgram: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=discard-stream) => {"changed": false, "item": "discard-stream", "msg": "Could not find the requested service discard-stream: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.4 - Ensure echo services are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=echo-dgram) => {"changed": false, "item": "echo-dgram", "msg": "Could not find the requested service echo-dgram: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=echo-stream) => {"changed": false, "item": "echo-stream", "msg": "Could not find the requested service echo-stream: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.5 - Ensure time services are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=time-dgram) => {"changed": false, "item": "time-dgram", "msg": "Could not find the requested service time-dgram: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=time-stream) => {"changed": false, "item": "time-stream", "msg": "Could not find the requested service time-stream: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.6 - Ensure rsh server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=rexec) => {"changed": false, "item": "rexec", "msg": "Could not find the requested service rexec: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=rlogin) => {"changed": false, "item": "rlogin", "msg": "Could not find the requested service rlogin: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=rsh) => {"changed": false, "item": "rsh", "msg": "Could not find the requested service rsh: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.7 - Ensure talk server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service talk: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.8 - Ensure telnet server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service telnet: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.9 - Ensure tftp server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service tftp: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.10 - Ensure rsync server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service rsync: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.1.11 - Ensure xinetd server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service xinetd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.1.1 - Ensure ntp is installed] ******* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'state': u'present', u'name': u'ntp'})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'state': u'absent', u'name': u'chrony'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.1.1 - Ensure chrony is installed] **** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'state': u'absent', u'name': u'ntp'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'state': u'present', u'name': u'chrony'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Set Options -u ntp:ntp in /etc/sysconfig/ntpd] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Set Restrict -6] ************************* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Set Restrict -4] ************************* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.2 - Ensure X Window System is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.3 - Ensure Avahi Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service avahi-daemon: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.4 - Ensure CUPS is not enabled] ****** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service cups: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.5 - Ensure DHCP Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service dhcpd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.6 - Ensure LDAP server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service slapd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.7 - Ensure NFS and RPC are not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=nfs)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=rpcbind)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.8 - Ensure DNS Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service named: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.9 - Ensure FTP Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service vsftpd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.10 - Ensure HTTP server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=httpd) => {"changed": false, "item": "httpd", "msg": "Could not find the requested service httpd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=apache) => {"changed": false, "item": "apache", "msg": "Could not find the requested service apache: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=apache2) => {"changed": false, "item": "apache2", "msg": "Could not find the requested service apache2: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=nginx) => {"changed": false, "item": "nginx", "msg": "Could not find the requested service nginx: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=lighttpd) => {"changed": false, "item": "lighttpd", "msg": "Could not find the requested service lighttpd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.11 - Ensure IMAP and POP3 server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=dovecot) => {"changed": false, "item": "dovecot", "msg": "Could not find the requested service dovecot: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;31mfailed: [127.0.0.1] (item=cyrus-imapd) => {"changed": false, "item": "cyrus-imapd", "msg": "Could not find the requested service cyrus-imapd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.12 - Ensure Samba is not enabled] **** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service smb: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.13 - Ensure HTTP Proxy Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service squid: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.14 - Ensure SNMP Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service snmpd: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.15 - Check if mail transfer agent is configured for local-only mode] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.15 - Ensure mail transfer agent is configured for local-only mode] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.15 - Ensure mail transfer agent is configured for local-only mode] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.2.16 - Ensure NIS Server is not enabled] *** 
+    AWS AMI Builder - CIS: ·[0;31mfatal: [127.0.0.1]: FAILED! => {"changed": false, "msg": "Could not find the requested service ypserv: host"}·[0m 
+    AWS AMI Builder - CIS: ·[0;36m...ignoring·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.3.1 - Ensure NIS Client is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.3.2 - Ensure rsh client is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.3.3 - Ensure talk client is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.3.4 - Ensure telnet client is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 2.3.5 - Ensure LDAP client is not installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.1.1 - Ensure IP forwarding is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.1.1 - Ensure IP forwarding is disabled in active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.ip_forward=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.1.2 - Ensure packet redirect sending is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.send_redirects)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.default.send_redirects)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.1.2 - Ensure packet redirect sending is disabled in active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.send_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.send_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.1 - Ensure source routed packets are not accepted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.accept_source_route)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=net.ipv4.conf.default.accept_source_route)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.accept_source_route=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.accept_source_route=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.2 - Ensure ICMP redirects are not accepted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.accept_redirects)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.default.accept_redirects)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.2 - Ensure ICMP redirects are not accepted by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.accept_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.accept_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.3 - Ensure secure ICMP redirects are not accepted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.secure_redirects)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.default.secure_redirects)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.secure_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.secure_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.4 - Ensure suspicious packets are logged] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.log_martians)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.default.log_martians)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.4 - Ensure suspicious packets are logged by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.log_martians=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.log_martians=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.5 - Ensure broadcast ICMP requests are ignored] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.5 - Ensure broadcast ICMP requests are ignored by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.6 - Ensure bogus ICMP responses are ignored] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.7 - Ensure Reverse Path Filtering is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv4.conf.all.rp_filter)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=net.ipv4.conf.default.rp_filter)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.7 - Ensure Reverse Path Filtering is enabled by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.all.rp_filter=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.conf.default.rp_filter=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.8 - Ensure TCP SYN Cookies is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.2.8 - Ensure TCP SYN Cookies is enabled by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.tcp_syncookies=1)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv4.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.1 - Ensure IPv6 router advertisements are not accepted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv6.conf.all.accept_ra)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv6.conf.default.accept_ra)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.1 - Ensure IPv6 router advertisements are not accepted by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.conf.all.accept_ra=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.conf.default.accept_ra=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.2 - Ensure IPv6 redirects are not accepted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv6.conf.all.accept_redirects)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=net.ipv6.conf.default.accept_redirects)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.2 - Ensure IPv6 redirects are not accepted by active kernel parameters] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.conf.all.accept_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.conf.default.accept_redirects=0)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sysctl -w net.ipv6.route.flush=1)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.3 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.3 - Ensure IPv6 is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.3.3 - Ensure IPv6 is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.1 - Ensure TCP Wrappers is installed] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.2 - Check if /etc/hosts.allow configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.2 - Ensure /etc/hosts.allow is configured] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.2 - Ensure /etc/hosts.allow is configured] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.3 - Check if /etc/hosts.deny configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.3 - Ensure /etc/hosts.deny is configured] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.3 - Ensure /etc/hosts.deny is configured] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.4 - Ensure permissions on /etc/hosts.allow are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.4.5 - Ensure permissions on /etc/hosts.deny are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.1 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.1 - Ensure DCCP is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.1 - Ensure DCCP is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.2 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.2 - Ensure SCTP is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.2 - Ensure SCTP is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.3 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.3 - Ensure RDS is disabled] ********** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.3 - Ensure RDS is disabled] ********** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.4 - Check if CIS modprobe configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.4 - Ensure TIPC is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.5.4 - Ensure TIPC is disabled] ********* 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.1 - Ensure iptables is installed] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.3 - Ensure loopback traffic is configured(-i lo)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.3 - Ensure loopback traffic is configured(-o lo)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.3 - Ensure loopback traffic is configured(-i 127.0.0.1/8)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.4 - Ensure outbound and established connections are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.5 - Ensure firewall rules exist for all open ports] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "WARNING - We are already checking this as part of security groups."·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.5 - Ensure firewall rules exist for accepting SSH connections] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 3.6.2 - Ensure default deny firewall policy(DROP INPUT)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=INPUT) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=FORWARD) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=OUTPUT) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.3 - Ensure rsyslog is installed] ***** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'state': u'present', u'name': u'rsyslog'})·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item={u'state': u'absent', u'name': u'syslog-ng'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.3 - Ensure syslog-ng is installed] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'state': u'absent', u'name': u'rsyslog'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'state': u'present', u'name': u'syslog-ng'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.1 - Check if rsyslog is installed] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.1 - Ensure rsyslog Service is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.2 - Ensure logging is configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "WARNING - This check has not been implemented yet."·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.3 - Ensure rsyslog default file permissions configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.4 - Ensure rsyslog is configured to send logs to a remote log host] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.5 - Ensure remote rsyslog messages are only accepted on designated log hosts] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'regexp': u'^#?\\$ModLoad\\s+imtcp.so', u'line': u'$ModLoad imtcp.so'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'regexp': u'^#?\\$InputTCPServerRun\\s+', u'line': u'$InputTCPServerRun 514'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.1.5 - Ensure remote rsyslog messages are not accepted on non-designated log hosts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=^#?\$ModLoad\s+imtcp.so)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=^#?\$InputTCPServerRun\s+514)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.1 - Check if syslog-ng is installed] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.1 - Ensure syslog-ng service is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.2 - Ensure logging is configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "WARNING - This check has not been implemented yet."·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.3 - Ensure syslog-ng default file permissions configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "WARNING - This check has not been implemented yet."·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.4 - Ensure syslog-ng is configured to send logs to a remote log host] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.2.5 - Ensure remote syslog-ng messages are only accepted on designated log hosts] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.2.4 - Ensure permissions on all logfiles are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.3 - Ensure logrotate is configured] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "WARNING - This check has not been implemented yet."·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.1 - Ensure cron is installed] ******** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.1 - Ensure cron daemon is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.2 - Ensure permissions on /etc/crontab are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.3 - Ensure permissions on /etc/cron.hourly are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.4 - Ensure permissions on /etc/cron.daily are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.5 - Ensure permissions on /etc/cron.weekly are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.6 - Ensure permissions on /etc/cron.monthly are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.7 - Ensure permissions on /etc/cron.d are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.8 - Ensure /etc/cron.deny and /etc/at.deny do not exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/at.deny)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/cron.deny)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.1.8 -  Ensure at/cron is restricted to authorized users] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/cron.allow)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/at.allow)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.2 - Ensure SSH Protocol is set to 2] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.3 - Ensure SSH LogLevel is set to INFO] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.4 - Ensure SSH X11 forwarding is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.5 - Ensure SSH MaxAuthTries is set to 4 or less] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.6 - Ensure SSH IgnoreRhosts is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.7 - Ensure SSH HostbasedAuthentication is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.8 - Ensure SSH root login is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.10 - Ensure SSH PermitUserEnvironment is disabled] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.11 - Ensure only approved ciphers are used] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.12 - Ensure only approved MAC algorithms are used] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.13 - Ensure SSH Client Alive Interval is configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.13 - Ensure SSH Client Alive Count Max is configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.14 - Ensure SSH LoginGraceTime is set to one minute or less] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.15 - Configure SSH AllowUsers] ******* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.15 - Configure SSH AllowGroups] ****** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.15 - Configure SSH DenyUsers] ******** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.15 - Configure SSH DenyGroups] ******* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : Check if /etc/ssh/sshd_config exists] **** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.2.16 - Ensure SSH warning banner is configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.1 - Ensure password creation requirements are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'regexp': u'^#?minlen=', u'line': u'minlen=14'})·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'regexp': u'^#?dcredit=', u'line': u'dcredit=-1'})·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'regexp': u'^#?ucredit=', u'line': u'ucredit=-1'})·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'regexp': u'^#?ocredit=', u'line': u'ocredit=-1'})·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item={u'regexp': u'^#?lcredit=', u'line': u'lcredit=-1'})·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - before)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - last)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - after)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.3 - Ensure password reuse is limited (/etc/pam.d/system-auth)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.3 - Ensure password reuse is limited (/etc/pam.d/password-auth)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.3.4 - Ensure password hashing algorithm is SHA-512] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.1 - Obtain a list of user accounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.1 - Ensure password expiration is 90 days or less] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.1 - Set password expiration for all user accounts] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.2 - Obtain a list of user accounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.2 - Ensure minimum days between password changes is 7 or more] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.2 - Set minimum password change interval for all user accounts] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.3 - Obtain a list of user accounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.3 - Ensure password expiration warning days is 7 or more] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.3 - Set password expiration warning for all user accounts] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.4 - Obtain a list of user accounts] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.4 - Ensure inactive password lock is 30 days or less] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.1.4 - Set inactive password lock for all user accounts] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.2 - Retrieve system accounts] ******** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.2 - Lock system user passwords] ****** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=root) ·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=bin)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=daemon)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=adm)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=lp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sync)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=shutdown)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=halt)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=mail)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=uucp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=operator)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=games)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=gopher)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=ftp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=nobody)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=rpc)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=ntp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=saslauth)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=mailnull)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=smmsp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=rpcuser)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=sshd)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=dbus)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.2 - Ensure system accounts are non-login] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=root) ·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=bin)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=daemon)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=adm)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=lp)·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=sync) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=shutdown) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=halt) ·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=mail)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=uucp)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=operator)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=games)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=gopher)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=ftp)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=nobody)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=rpc)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=ntp)·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=saslauth)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=mailnull)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=smmsp)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=rpcuser)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=sshd)·[0m 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => (item=dbus)·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.3 - Check the GID of the root group] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.3 - Ensure default group for the root account is GID 0] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.4.4 - Ensure default user umask is 027 or more restrictive] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/bashrc)·[0m 
+    AWS AMI Builder - CIS: ·[1;35m [WARNING]: Consider using the replace, lineinfile or template module rather·[0m 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1] => (item=/etc/profile)·[0m 
+    AWS AMI Builder - CIS: ·[1;35mthan running 'sed'.  If you need to use command because replace, lineinfile or·[0m 
+    AWS AMI Builder - CIS: ·[1;35mtemplate is insufficient you can add 'warn: false' to this command task or set·[0m 
+    AWS AMI Builder - CIS: ·[1;35m'command_warnings=False' in ansible.cfg to get rid of this message.·[0m 
+    AWS AMI Builder - CIS: ·[1;35m·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.5 - Ensure access to the su command is restricted] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 5.5 - Configure wheel group members who can access the su command] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.2 - Ensure permissions on /etc/passwd are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.3 - Ensure permissions on /etc/shadow are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.4 - Ensure permissions on /etc/group are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.5 - Ensure permissions on /etc/gshadow are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.6 - Ensure permissions on /etc/passwd- are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.7 - Ensure permissions on /etc/shadow- are configured] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.8 - Ensure permissions on /etc/group- are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.9 - Ensure permissions on /etc/gshadow- are configured] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.10 - Audit if any world writable files exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.10 - Ensure no world writable files exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.10 - Ensure no world writable files exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.11 - Audit if any unowned files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.11 - Ensure no unowned files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.11 - Ensure no unowned files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.12 - Audit if any ungrouped files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.12 - Ensure no ungrouped files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.12 - Ensure no ungrouped files or directories exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.13 - Check if any SUID executables exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.13 - Audit SUID executables] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.13 - Audit SUID executables] ********* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "*** ACTION REQUIRED *** /lib64/dbus-1/dbus-daemon-launch-helper\n/sbin/unix_chkpwd\n/sbin/pam_timestamp_check\n/sbin/mount.nfs\n/bin/umount\n/bin/mount\n/bin/su\n/usr/sbin/seunshare\n/usr/sbin/ccreds_chkpwd\n/usr/sbin/usernetctl\n/usr/bin/chage\n/usr/bin/sudo\n/usr/bin/chfn\n/usr/bin/chsh\n/usr/bin/gpasswd\n/usr/bin/at\n/usr/bin/newgrp\n/usr/bin/passwd\n/usr/bin/crontab"·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.14 - Check if any SGID executables exist] *** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.14 - Audit SGID executables] ********* 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.14 - Audit SGID executables] ********* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "*** ACTION REQUIRED *** /sbin/netreport\n/bin/cgexec\n/bin/cgclassify\n/usr/sbin/sendmail.sendmail\n/usr/libexec/utempter/utempter\n/usr/libexec/openssh/ssh-keysign\n/usr/bin/write\n/usr/bin/wall\n/usr/bin/screen\n/usr/bin/ssh-agent\n/usr/bin/lockfile"·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.1 - Identify any accounts without passwords] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.1 - Lock any accounts without passwords] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.2 - Ensure no legacy "+" entries exist in /etc/passwd] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.3 - Ensure no legacy "+" entries exist in /etc/shadow] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.4 - Ensure no legacy "+" entries exist in /etc/group] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.5 - Ensure root is the only UID 0 account] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.5 - Fail if root is not the only UID 0 account] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.5 - Warn if root is not the only UID 0 account] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.6 - Audit root PATH Integrity - Copy script] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.6 - Audit root PATH Integrity] ******* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.6 - Ensure root PATH Integrity] ****** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.6 - Ensure root PATH Integrity] ****** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1] => {·[0m 
+    AWS AMI Builder - CIS: ·[0;32m    "msg": "*** ACTION REQUIRED *** /root/bin is not a directory"·[0m 
+    AWS AMI Builder - CIS: ·[0;32m}·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.6 - Audit root PATH Integrity - Remove script] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.7 - Audit existence of users' home directories] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.7 - Ensure users' home directories exist.] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.8 - Audit users' home directories permissions] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.8 - Ensure users' home directories permissions are 750 or more restrictive] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.8 - Ensure users' home directories permissions are 750 or more restrictive] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.9 - Audit ownership of users' home directories] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.9 - Ensure users own their home directories] *** 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.10 - Audit users' dot files permissions] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.10 - Ensure users' dot files are not group or world writable] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.10 - Ensure users' dot files are not group or world writable] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.11 - Audit users' forward files] ***** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.11 - Ensure no users have .forward files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.11 - Ensure no users have .forward files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.12 - Audit users'.netrc files] ******* 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.12 - Ensure no users have .netrc files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.12 - Ensure no users have .netrc files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.13 - Audit users'.netrc permissions] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.13 - Ensure users' .netrc Files are not group or world accessible] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.13 - Ensure users' .netrc Files are not group or world accessible] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.14 - Audit users'.rhosts files] ****** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.14 - Ensure no users have .rhosts files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.14 - Ensure no users have .rhosts files] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.15 - Audit existence of groups listed in /etc/passwd against /etc/group] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.15 - Ensure all groups in /etc/passwd exist in /etc/group] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.15 - Ensure all groups in /etc/passwd exist in /etc/group] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.16 - Check if duplicate UIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.16 - Ensure no duplicate UIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.16 - Ensure no duplicate UIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.17 - Check if duplicate GIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.17 - Ensure no duplicate GIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.17 - Ensure no duplicate GIDs exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.18 - Check if duplicate user names exist] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.18 - Ensure no duplicate user names exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.18 - Ensure no duplicate user names exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.19 - Check if duplicate group names exist] *** 
+    AWS AMI Builder - CIS: ·[0;32mok: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.19 - Ensure no duplicate group names exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.2.19 - Ensure no duplicate group names exist] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.8 Ensure login and logout events are collected(Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.8 Ensure login and logout events are collected (Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.8 Ensure login and logout events are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/log/lastlog -p wa -k logins) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/run/faillock/ -p wa -k logins) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.9 Ensure session initiation information is collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.9 Ensure session initiation information is collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.9 Ensure login and logout events are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/run/utmp -p wa -k session) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/log/wtmp -p wa -k session) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/log/btmp -p wa -k session) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.10 Ensure discretionary access control permission modification events are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.10 Ensure discretionary access control permission modification events are collected (Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.10 Ensure discretionary access control permission modification events are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.11 Ensure unsuccessful unauthorized file access attempts are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.11 Ensure unsuccessful unauthorized file access attempts are collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.11 Ensure unsuccessful unauthorized file access attempts are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=500 -F auid!=4294967295 -k access) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.13 Ensure successful file system mounts are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.13 Ensure successful file system mounts are collected (Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.13 Ensure successful file system mounts are collected (Scored)) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k mounts) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k mounts) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.14 Ensure file deletion events by users are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.14 Ensure file deletion events by users are collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.14 Ensure file deletion events by users are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.15 Ensure changes to system administration scope (sudoers) is collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.15 Ensure changes to system administration scope (sudoers) is collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.15 Ensure changes to system administration scope (sudoers) is collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/sudoers -p wa -k scope) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/sudoers.d -p wa -k scope) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.16 Ensure system administrator actions (sudolog) are collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.16 Ensure system administrator actions (sudolog) are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /var/log/sudo.log -p wa -k actions) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.17 Ensure kernel module loading and unloading is collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.17 Ensure kernel module loading and unloading is collected(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.17 Ensure kernel module loading and unloading is collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /sbin/insmod -p x -k modules) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /sbin/rmmod -p x -k modules) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /sbin/modprobe -p x -k modules) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit arch=b64 -S init_module -S delete_module -k modules) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.18 Ensure the audit configuration is immutable (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.18 Ensure the audit configuration is immutable(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.18 Ensure the audit configuration is immutable) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-e 2) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.1 - Audit system file permissions] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.1 - Audit system file permissions] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 6.1.1 - Audit system file permissions] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.1.2- Check if CIS audit.d configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.1.2 Ensure system is disabled when audit logs are full (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'regexp': u'space_left_action = SYSLOG', u'line': u'space_left_action = email'}) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item={u'regexp': u'admin_space_left_action = SUSPEND', u'line': u'admin_space_left_action = halt'}) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.1.3- Check if CIS audit.d configuration file exists] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.1.3 Ensure audit logs are not automatically deleted (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.2 Ensure auditd service is enabled (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.2 Ensure auditd service is enabled (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.3 Ensure auditing for processes that start prior to auditd is enabled] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.3 Inform user to make the required change] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.4 Ensure events that modify date and time information are collected (Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.4 Ensure events that modify date and time information are collected (Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.4 Ensure events that modify date and time information are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S clock_settime -k time-change) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S clock_settime -k time-change) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/localtime -p wa -k time-change) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.5 Ensure events that modify user/group information are collected(Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.5 Ensure events that modify user/group information are collected(Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.5 Ensure events that modify date and time information are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/group -p wa -k identity) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/passwd -p wa -k identity) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/gshadow -p wa -k identity) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/shadow -p wa -k identity) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/security/opasswd -p wa -k identity) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.6 Ensure events that modify the system's network environment are collected(Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.6 Ensure events that modify the system's network environment are collected(Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.6 Ensure events that modify date and time information are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/issue -p wa -k system-locale) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/issue.net -p wa -k system-locale) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/sysconfig/network -p wa -k system-locale) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected(Scored)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: TASK [anthcourtney.cis-amazon-linux : 4.1.7 Ensure events that modify the system's Mandatory Access Controls are collected(Scored)(Verify registered output matches)] *** 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=# 4.1.7 Ensure events that modify date and time information are collected) ·[0m 
+    AWS AMI Builder - CIS: ·[0;36mskipping: [127.0.0.1] => (item=-w /etc/selinux/ -p wa -k MAC-policy) ·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: RUNNING HANDLER [anthcourtney.cis-amazon-linux : Restart sshd] ***************** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: RUNNING HANDLER [anthcourtney.cis-amazon-linux : Restart rsyslog] ************** 
+    AWS AMI Builder - CIS: ·[0;33mchanged: [127.0.0.1]·[0m 
+    AWS AMI Builder - CIS: 
+    AWS AMI Builder - CIS: PLAY RECAP ********************************************************************* 
+    AWS AMI Builder - CIS: ·[0;33m127.0.0.1·[0m                  : ·[0;32mok=264 ·[0m ·[0;33mchanged=130 ·[0m unreachable=0    failed=0 
+    AWS AMI Builder - CIS: 
+==> AWS AMI Builder - CIS: Provisioning with shell script: /tmp/packer-shell952357162 
+==> AWS AMI Builder - CIS: Stopping the source instance... 
+    AWS AMI Builder - CIS: Stopping instance, attempt 1 
+==> AWS AMI Builder - CIS: Waiting for the instance to stop... 
+==> AWS AMI Builder - CIS: Creating unencrypted AMI Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56 from instance i-00edf09755d44594d 
+    AWS AMI Builder - CIS: AMI: ami-8c0a1e67 
+==> AWS AMI Builder - CIS: Waiting for AMI to become ready... 
+==> AWS AMI Builder - CIS: Modifying attributes on AMI (ami-8c0a1e67)... 
+    AWS AMI Builder - CIS: Modifying: description 
+==> AWS AMI Builder - CIS: Modifying attributes on snapshot (snap-0f14849db590ec0c8)... 
+==> AWS AMI Builder - CIS: Adding tags to AMI (ami-8c0a1e67)... 
+==> AWS AMI Builder - CIS: Tagging snapshot: snap-0f14849db590ec0c8 
+==> AWS AMI Builder - CIS: Creating AMI tags 
+    AWS AMI Builder - CIS: Adding tag: "Name": "Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56" 
+==> AWS AMI Builder - CIS: Creating snapshot tags 
+    AWS AMI Builder - CIS: Adding tag: "Name": "Prod-CIS-Latest-AMZN-07-Nov-19 03_31_56" 
+==> AWS AMI Builder - CIS: Terminating the source AWS instance... 
+==> AWS AMI Builder - CIS: Cleaning up any extra volumes... 
+==> AWS AMI Builder - CIS: No volumes to clean up, skipping 
+==> AWS AMI Builder - CIS: Deleting temporary security group... 
+==> AWS AMI Builder - CIS: Deleting temporary keypair... 
+Build 'AWS AMI Builder - CIS' finished. 
+ 
+==> Builds finished. The artifacts of successful builds are: 
+--> AWS AMI Builder - CIS: AMIs were created: 
+eu-central-1: ami-8c0a1e67 
+ 
+ 
+[Container] 2019/11/07 15:39:28 Phase complete: BUILD State: SUCCEEDED 
+[Container] 2019/11/07 15:39:28 Phase context status code:  Message:  
+[Container] 2019/11/07 15:39:28 Entering phase POST_BUILD 
+[Container] 2019/11/07 15:39:28 Running command egrep "${AWS_REGION}\:\sami\-" build.log | cut -d' ' -f2 > ami_id.txt 
+ 
+[Container] 2019/11/07 15:39:28 Running command test -s ami_id.txt || exit 1 
+ 
+[Container] 2019/11/07 15:39:28 Running command sed -i.bak "s/<<AMI-ID>>/$(cat ami_id.txt)/g" ami_builder_event.json 
+ 
+[Container] 2019/11/07 15:39:28 Running command aws events put-events --entries file://ami_builder_event.json 
+{ 
+    "FailedEntryCount": 0, 
+    "Entries": [ 
+        { 
+            "EventId": "e2ad6f31-87d7-5c5d-b61c-d08da0c351fd" 
+        } 
+    ] 
+} 
+ 
+[Container] 2019/11/07 15:39:29 Running command echo "build completed on `date`" 
+build completed on Thu Nov  7 15:39:29 UTC 2019 
+ 
+[Container] 2019/11/07 15:39:29 Phase complete: POST_BUILD State: SUCCEEDED 
+[Container] 2019/11/07 15:39:29 Phase context status code:  Message:  
+[Container] 2019/11/07 15:39:29 Expanding base directory path: . 
+[Container] 2019/11/07 15:39:29 Assembling file list 
+[Container] 2019/11/07 15:39:29 Expanding . 
+[Container] 2019/11/07 15:39:29 Expanding file paths for base directory . 
+[Container] 2019/11/07 15:39:29 Assembling file list 
+[Container] 2019/11/07 15:39:29 Expanding ami_builder_event.json 
+[Container] 2019/11/07 15:39:29 Expanding build.log 
+[Container] 2019/11/07 15:39:29 Found 2 file(s) 
+[Container] 2019/11/07 15:39:29 Phase complete: UPLOAD_ARTIFACTS State: SUCCEEDED 
+[Container] 2019/11/07 15:39:29 Phase context status code:  Message:  
+ 

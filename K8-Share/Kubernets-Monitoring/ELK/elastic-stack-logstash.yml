@@ -1,0 +1,32 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-01-03T16:40:42Z"
+  labels:
+    app: logstash
+    chart: logstash-1.13.0
+    heritage: Tiller
+    release: elastic-stack
+  name: elastic-stack-logstash
+  namespace: default
+  resourceVersion: "82966"
+  selfLink: /api/v1/namespaces/default/services/elastic-stack-logstash
+  uid: c84eb2bc-2e47-11ea-9b76-026e367e89d6
+spec:
+  clusterIP: 100.64.116.53
+  ports:
+  - name: beats
+    port: 5044
+    protocol: TCP
+    targetPort: beats
+  selector:
+    app: logstash
+    release: elastic-stack
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

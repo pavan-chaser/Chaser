@@ -1,0 +1,26 @@
+{
+  "Parameters" : {
+    "EnvironmentName" : "K8s",
+    "VPCSubnetCidrBlock" : "12.0.0.0/16",
+	"AvailabilityZone1" : "a",
+	"AvailabilityZone2" : "b",
+	"AvailabilityZone3" : "c",
+	"PublicSubnetCidrBlock1" : "12.0.12.0/22",
+	"PublicSubnetCidrBlock2" : "12.0.16.0/22",
+	"PublicSubnetCidrBlock3" : "12.0.20.0/22",
+	"PrivateSubnetCidrBlock1": "12.0.32.0/19",
+	"PrivateSubnetCidrBlock2": "12.0.64.0/19",
+	"PrivateSubnetCidrBlock3": "12.0.96.0/19",
+	"PrivateSubnetCidrBlock4": "12.0.0.0/22",
+	"PrivateSubnetCidrBlock5": "12.0.4.0/22",
+	"PrivateSubnetCidrBlock6": "12.0.8.0/22",
+	"OpenVPNKeyPair" : "Kops-K8s",
+    "InstanceType"   : "t2.micro",
+	"ImageId"        : "ami-00b7bb451c0c20931",
+	"KopsKeypair"    : "Kops-K8s",
+	"KopsInstanceType" : "t2.micro",
+	"KopsImageId" : "ami-01c4256740526ad8f",
+	"DomainName"  : "etechbrain.com",
+	"SubDomainName" : "kops-prod.etechbrain.com"
+	}
+}

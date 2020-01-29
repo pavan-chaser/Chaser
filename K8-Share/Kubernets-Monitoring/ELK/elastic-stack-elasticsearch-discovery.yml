@@ -1,0 +1,33 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-01-03T16:40:42Z"
+  labels:
+    app: elasticsearch
+    chart: elasticsearch-1.29.0
+    component: master
+    heritage: Tiller
+    release: elastic-stack
+  name: elastic-stack-elasticsearch-discovery
+  namespace: default
+  resourceVersion: "82961"
+  selfLink: /api/v1/namespaces/default/services/elastic-stack-elasticsearch-discovery
+  uid: c84d0f82-2e47-11ea-9b76-026e367e89d6
+spec:
+  clusterIP: None
+  ports:
+  - port: 9300
+    protocol: TCP
+    targetPort: transport
+  selector:
+    app: elasticsearch
+    component: master
+    release: elastic-stack
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

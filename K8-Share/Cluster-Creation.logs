@@ -1,0 +1,1140 @@
+[ec2-user@ip-12-0-14-210 ~]$ export CLUSTER_NAME=kops-prod.etechbrain.com
+[ec2-user@ip-12-0-14-210 ~]$ echo ${CLUSTER_NAME}
+kops-prod.etechbrain.com
+[ec2-user@ip-12-0-14-210 ~]$ export KOPS_STATE_STORE=s3://clusters.kubernetes.etechbrain.com
+[ec2-user@ip-12-0-14-210 ~]$ echo ${KOPS_STATE_STORE}
+s3://clusters.kubernetes.etechbrain.com
+[ec2-user@ip-12-0-14-210 ~]$ export SSH_PUBLIC_KEY=/home/ec2-user/.ssh/id_rsa.pub
+[ec2-user@ip-12-0-14-210 ~]$ echo ${SSH_PUBLIC_KEY}
+/home/ec2-user/.ssh/id_rsa.pub
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kops replace --name ${CLUSTER_NAME} --state ${KOPS_STATE_STORE} --filename ./cluster.yml --force
+[ec2-user@ip-12-0-14-210 ~]$ ssh-keygen -b 2048 -t rsa -N "" -f ~/.ssh/id_rsa
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kops create secret sshpublickey admin --name ${CLUSTER_NAME} --state ${KOPS_STATE_STORE} --pubkey ${SSH_PUBLIC_KEY}
+[ec2-user@ip-12-0-14-210 ~]$ kops update cluster --name ${CLUSTER_NAME} --state ${KOPS_STATE_STORE} --yes
+
+*********************************************************************************
+
+A new kubernetes version is available: 1.13.12
+Upgrading is recommended (try kops upgrade cluster)
+
+More information: https://github.com/kubernetes/kops/blob/master/permalinks/upgrade_k8s.md#1.13.12
+
+*********************************************************************************
+
+
+*********************************************************************************
+
+Kubelet anonymousAuth is currently turned on. This allows RBAC escalation and remote code execution possibilities.
+It is highly recommended you turn it off by setting 'spec.kubelet.anonymousAuth' to 'false' via 'kops edit cluster'
+
+See https://github.com/kubernetes/kops/blob/master/docs/security.md#kubelet-api
+
+*********************************************************************************
+
+I0102 07:28:48.512103   23482 context.go:249] hit maximum retries 1 with error file does not exist
+I0102 07:28:49.709366   23482 context.go:249] hit maximum retries 1 with error file does not exist
+W0102 07:28:52.644920   23482 firewall.go:250] Opening etcd port on masters for access from the nodes, for calico.  This is unsafe in untrusted environments.
+I0102 07:28:53.151206   23482 executor.go:103] Tasks: 0 done / 111 total; 50 can run
+I0102 07:28:54.094698   23482 vfs_castore.go:729] Issuing new certificate: "etcd-manager-ca-main"
+I0102 07:28:54.143440   23482 vfs_castore.go:729] Issuing new certificate: "etcd-peers-ca-events"
+I0102 07:28:54.383964   23482 vfs_castore.go:729] Issuing new certificate: "etcd-peers-ca-main"
+I0102 07:28:54.458679   23482 vfs_castore.go:729] Issuing new certificate: "ca"
+I0102 07:28:54.537270   23482 vfs_castore.go:729] Issuing new certificate: "apiserver-aggregator-ca"
+I0102 07:28:54.691003   23482 vfs_castore.go:729] Issuing new certificate: "etcd-manager-ca-events"
+I0102 07:28:54.781100   23482 vfs_castore.go:729] Issuing new certificate: "etcd-clients-ca"
+I0102 07:28:54.964066   23482 executor.go:103] Tasks: 50 done / 111 total; 28 can run
+I0102 07:28:55.545937   23482 vfs_castore.go:729] Issuing new certificate: "kubelet"
+I0102 07:28:55.753520   23482 vfs_castore.go:729] Issuing new certificate: "master"
+I0102 07:28:56.331613   23482 vfs_castore.go:729] Issuing new certificate: "kube-scheduler"
+I0102 07:28:56.546794   23482 vfs_castore.go:729] Issuing new certificate: "kops"
+I0102 07:28:57.095643   23482 vfs_castore.go:729] Issuing new certificate: "kube-proxy"
+I0102 07:28:57.343480   23482 vfs_castore.go:729] Issuing new certificate: "kube-controller-manager"
+I0102 07:28:58.427047   23482 vfs_castore.go:729] Issuing new certificate: "kubecfg"
+I0102 07:28:58.447101   23482 vfs_castore.go:729] Issuing new certificate: "apiserver-proxy-client"
+I0102 07:28:58.534680   23482 vfs_castore.go:729] Issuing new certificate: "kubelet-api"
+I0102 07:28:58.662118   23482 vfs_castore.go:729] Issuing new certificate: "apiserver-aggregator"
+I0102 07:28:58.870403   23482 executor.go:103] Tasks: 78 done / 111 total; 23 can run
+I0102 07:28:59.044129   23482 launchconfiguration.go:364] waiting for IAM instance profile "masters.kops-prod.etechbrain.com" to be ready
+I0102 07:28:59.051373   23482 launchconfiguration.go:364] waiting for IAM instance profile "masters.kops-prod.etechbrain.com" to be ready
+I0102 07:28:59.068758   23482 launchconfiguration.go:364] waiting for IAM instance profile "nodes.kops-prod.etechbrain.com" to be ready
+I0102 07:28:59.079035   23482 launchconfiguration.go:364] waiting for IAM instance profile "masters.kops-prod.etechbrain.com" to be ready
+I0102 07:28:59.083445   23482 launchconfiguration.go:364] waiting for IAM instance profile "nodes.kops-prod.etechbrain.com" to be ready
+I0102 07:28:59.083709   23482 launchconfiguration.go:364] waiting for IAM instance profile "nodes.kops-prod.etechbrain.com" to be ready   I0102 07:29:09.391385   23482 executor.go:103] Tasks: 101 done / 111 total; 7 can run
+I0102 07:29:10.368541   23482 executor.go:103] Tasks: 108 done / 111 total; 3 can run
+I0102 07:29:12.753090   23482 executor.go:103] Tasks: 111 done / 111 total; 0 can run
+I0102 07:29:12.753199   23482 dns.go:155] Pre-creating DNS records
+I0102 07:29:13.471370   23482 update_cluster.go:294] Exporting kubecfg for cluster
+kops has set your kubectl context to kops-prod.etechbrain.com
+
+Cluster is starting.  It should be ready in a few minutes.
+
+Suggestions:
+ * validate cluster: kops validate cluster
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.kops-prod.etechbrain.com
+ * the admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
+ * read about installing addons at: https://github.com/kubernetes/kops/blob/master/docs/addons.md.
+
+[ec2-user@ip-12-0-14-210 ~]$ kops rolling-update cluster $(CLUSTER_NAME) --yes
+-bash: CLUSTER_NAME: command not found
+Using cluster from kubectl context: kops-prod.etechbrain.com
+
+NAME                    STATUS  NEEDUPDATE      READY   MIN     MAX     NODES
+master-ap-south-1a      Ready   0               1       1       1       1
+master-ap-south-1b      Ready   0               1       1       1       1
+master-ap-south-1c      Ready   0               1       1       1       1
+nodes-ap-south-1a       Ready   0               1       1       5       1
+nodes-ap-south-1b       Ready   0               1       1       5       1
+nodes-ap-south-1c       Ready   0               1       1       5       1
+
+No rolling-update required.
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ kops validate cluster
+Using cluster from kubectl context: kops-prod.etechbrain.com
+
+Validating cluster kops-prod.etechbrain.com
+
+INSTANCE GROUPS
+NAME                    ROLE    MACHINETYPE     MIN     MAX     SUBNETS
+master-ap-south-1a      Master  m5.large        1       1       ap-south-1a
+master-ap-south-1b      Master  m5.large        1       1       ap-south-1b
+master-ap-south-1c      Master  m5.large        1       1       ap-south-1c
+nodes-ap-south-1a       Node    m5.xlarge       1       5       ap-south-1a
+nodes-ap-south-1b       Node    m5.xlarge       1       5       ap-south-1b
+nodes-ap-south-1c       Node    m5.xlarge       1       5       ap-south-1c
+
+NODE STATUS
+NAME                                            ROLE    READY
+ip-12-0-101-46.ap-south-1.compute.internal      node    True
+ip-12-0-127-115.ap-south-1.compute.internal     master  True
+ip-12-0-36-135.ap-south-1.compute.internal      master  True
+ip-12-0-60-61.ap-south-1.compute.internal       node    True
+ip-12-0-71-254.ap-south-1.compute.internal      master  True
+ip-12-0-79-140.ap-south-1.compute.internal      node    True
+
+Your cluster kops-prod.etechbrain.com is ready
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get node
+NAME                                          STATUS   ROLES    AGE     VERSION
+ip-12-0-101-46.ap-south-1.compute.internal    Ready    node     7m26s   v1.13.4
+ip-12-0-127-115.ap-south-1.compute.internal   Ready    master   9m2s    v1.13.4
+ip-12-0-36-135.ap-south-1.compute.internal    Ready    master   9m4s    v1.13.4
+ip-12-0-60-61.ap-south-1.compute.internal     Ready    node     7m5s    v1.13.4
+ip-12-0-71-254.ap-south-1.compute.internal    Ready    master   8m4s    v1.13.4
+ip-12-0-79-140.ap-south-1.compute.internal    Ready    node     7m5s    v1.13.4
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl cluster-info
+Kubernetes master is running at https://api.kops-prod.etechbrain.com
+CoreDNS is running at https://api.kops-prod.etechbrain.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get namespace
+NAME          STATUS   AGE
+default       Active   20m
+kube-public   Active   20m
+kube-system   Active   20m
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kops delete cluster --name ${CLUSTER_NAME} --yes
+TYPE                    NAME
+ID
+        master-ap-south-1a.masters.kops-prod.etechbrain.com-20200102072858
+autoscaling-config      master-ap-south-1b.masters.kops-prod.etechbrain.com-20200102072858
+        master-ap-south-1b.masters.kops-prod.etechbrain.com-20200102072858
+autoscaling-config      master-ap-south-1c.masters.kops-prod.etechbrain.com-20200102072858
+        master-ap-south-1c.masters.kops-prod.etechbrain.com-20200102072858
+autoscaling-config      nodes-ap-south-1a.kops-prod.etechbrain.com-20200102072858
+nodes-ap-south-1a.kops-prod.etechbrain.com-20200102072858
+autoscaling-config      nodes-ap-south-1b.kops-prod.etechbrain.com-20200102072858
+nodes-ap-south-1b.kops-prod.etechbrain.com-20200102072858
+autoscaling-config      nodes-ap-south-1c.kops-prod.etechbrain.com-20200102072858
+nodes-ap-south-1c.kops-prod.etechbrain.com-20200102072858
+autoscaling-group       master-ap-south-1a.masters.kops-prod.etechbrain.com
+master-ap-south-1a.masters.kops-prod.etechbrain.com
+autoscaling-group       master-ap-south-1b.masters.kops-prod.etechbrain.com
+master-ap-south-1b.masters.kops-prod.etechbrain.com
+autoscaling-group       master-ap-south-1c.masters.kops-prod.etechbrain.com
+master-ap-south-1c.masters.kops-prod.etechbrain.com
+autoscaling-group       nodes-ap-south-1a.kops-prod.etechbrain.com
+nodes-ap-south-1a.kops-prod.etechbrain.com
+autoscaling-group       nodes-ap-south-1b.kops-prod.etechbrain.com
+nodes-ap-south-1b.kops-prod.etechbrain.com
+autoscaling-group       nodes-ap-south-1c.kops-prod.etechbrain.com
+nodes-ap-south-1c.kops-prod.etechbrain.com
+iam-instance-profile    masters.kops-prod.etechbrain.com
+masters.kops-prod.etechbrain.com
+iam-instance-profile    nodes.kops-prod.etechbrain.com
+nodes.kops-prod.etechbrain.com
+iam-role                masters.kops-prod.etechbrain.com
+masters.kops-prod.etechbrain.com
+iam-role                nodes.kops-prod.etechbrain.com
+nodes.kops-prod.etechbrain.com
+instance                master-ap-south-1a.masters.kops-prod.etechbrain.com
+i-0da6f845faf30980c
+instance                master-ap-south-1b.masters.kops-prod.etechbrain.com
+i-07165d23a3bd531da
+instance                master-ap-south-1c.masters.kops-prod.etechbrain.com
+i-01151204aff61cc4e
+instance                nodes-ap-south-1a.kops-prod.etechbrain.com
+i-045f9176b0eac5a85
+instance                nodes-ap-south-1b.kops-prod.etechbrain.com
+i-0ba3af04c0a1695cc
+instance                nodes-ap-south-1c.kops-prod.etechbrain.com
+i-0951e3d0bcdae50e3
+keypair                 kubernetes.kops-prod.etechbrain.com-ca:d8:73:e6:0a:01:df:88:67:27:0d:70:a7:f1:d7:20                              kubernetes.kops-prod.etechbrain.com-ca:d8:73:e6:0a:01:df:88:67:27:0d:70:a7:f1:d7:20
+load-balancer           api.kops-prod.etechbrain.com
+api-kops-prod-etechbrain--eue5g6
+route53-record          api.internal.kops-prod.etechbrain.com.
+Z2XCB6RGE5BP9D/api.internal.kops-prod.etechbrain.com.
+route53-record          api.kops-prod.etechbrain.com.
+Z2XCB6RGE5BP9D/api.kops-prod.etechbrain.com.
+security-group          api-elb.kops-prod.etechbrain.com
+sg-0968b3840a76aeda5
+security-group          masters.kops-prod.etechbrain.com
+sg-0eb4bfcb0dac017c0
+security-group          nodes.kops-prod.etechbrain.com
+sg-0a0781d35524b6198
+volume                  a.etcd-events.kops-prod.etechbrain.com
+vol-0f7b80635da9e9378
+volume                  a.etcd-main.kops-prod.etechbrain.com
+vol-0aa6f5552514d3072
+volume                  b.etcd-events.kops-prod.etechbrain.com
+vol-08f2a5f78913eb102
+volume                  b.etcd-main.kops-prod.etechbrain.com
+vol-07b129ac2d6c211ec
+volume                  c.etcd-events.kops-prod.etechbrain.com
+vol-048570d17552f5f00
+volume                  c.etcd-main.kops-prod.etechbrain.com
+vol-0d373f3c17fdc98a4
+
+load-balancer:api-kops-prod-etechbrain--eue5g6  ok
+keypair:kubernetes.kops-prod.etechbrain.com-ca:d8:73:e6:0a:01:df:88:67:27:0d:70:a7:f1:d7:20                                              ok
+instance:i-01151204aff61cc4e    ok
+instance:i-0ba3af04c0a1695cc    ok
+instance:i-07165d23a3bd531da    ok
+instance:i-0951e3d0bcdae50e3    ok
+instance:i-0da6f845faf30980c    ok
+instance:i-045f9176b0eac5a85    ok
+autoscaling-group:nodes-ap-south-1b.kops-prod.etechbrain.com    ok
+autoscaling-group:master-ap-south-1b.masters.kops-prod.etechbrain.com   ok
+autoscaling-group:nodes-ap-south-1a.kops-prod.etechbrain.com    ok
+autoscaling-group:master-ap-south-1c.masters.kops-prod.etechbrain.com   ok
+autoscaling-group:nodes-ap-south-1c.kops-prod.etechbrain.com    ok
+route53-record:Z2XCB6RGE5BP9D/api.internal.kops-prod.etechbrain.com.    ok
+autoscaling-group:master-ap-south-1a.masters.kops-prod.etechbrain.com   ok
+iam-instance-profile:masters.kops-prod.etechbrain.com   ok
+iam-instance-profile:nodes.kops-prod.etechbrain.com     ok
+iam-role:masters.kops-prod.etechbrain.com       ok
+iam-role:nodes.kops-prod.etechbrain.com ok
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+autoscaling-config:nodes-ap-south-1a.kops-prod.etechbrain.com-20200102072858    ok
+autoscaling-config:nodes-ap-south-1b.kops-prod.etechbrain.com-20200102072858    ok
+autoscaling-config:master-ap-south-1c.masters.kops-prod.etechbrain.com-20200102072858   ok
+autoscaling-config:nodes-ap-south-1c.kops-prod.etechbrain.com-20200102072858    ok
+autoscaling-config:master-ap-south-1b.masters.kops-prod.etechbrain.com-20200102072858   ok
+autoscaling-config:master-ap-south-1a.masters.kops-prod.etechbrain.com-20200102072858   ok
+security-group:sg-0968b3840a76aeda5     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0968b3840a76aeda5
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0968b3840a76aeda5     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        security-group:sg-0968b3840a76aeda5
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0968b3840a76aeda5     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        security-group:sg-0968b3840a76aeda5
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0968b3840a76aeda5     ok
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-0f7b80635da9e9378
+        volume:vol-07b129ac2d6c211ec
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0aa6f5552514d3072
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-0d373f3c17fdc98a4    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-048570d17552f5f00    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        volume:vol-048570d17552f5f00
+        security-group:sg-0a0781d35524b6198
+        volume:vol-0d373f3c17fdc98a4
+        security-group:sg-0eb4bfcb0dac017c0
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-048570d17552f5f00    ok
+volume:vol-0d373f3c17fdc98a4    ok
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        security-group:sg-0a0781d35524b6198
+volume:vol-07b129ac2d6c211ec    still has dependencies, will retry
+volume:vol-08f2a5f78913eb102    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-08f2a5f78913eb102
+        volume:vol-07b129ac2d6c211ec
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        security-group:sg-0a0781d35524b6198
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-07b129ac2d6c211ec    ok
+volume:vol-08f2a5f78913eb102    ok
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        security-group:sg-0a0781d35524b6198
+        security-group:sg-0eb4bfcb0dac017c0
+volume:vol-0f7b80635da9e9378    still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0eb4bfcb0dac017c0
+        volume:vol-0f7b80635da9e9378
+        volume:vol-0aa6f5552514d3072
+        security-group:sg-0a0781d35524b6198
+volume:vol-0f7b80635da9e9378    ok
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     still has dependencies, will retry
+volume:vol-0aa6f5552514d3072    ok
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0a0781d35524b6198
+        security-group:sg-0eb4bfcb0dac017c0
+security-group:sg-0a0781d35524b6198     still has dependencies, will retry
+security-group:sg-0eb4bfcb0dac017c0     ok
+Not all resources deleted; waiting before reattempting deletion
+        security-group:sg-0a0781d35524b6198
+security-group:sg-0a0781d35524b6198     ok
+Deleted kubectl config for kops-prod.etechbrain.com
+
+Deleted cluster: "kops-prod.etechbrain.com"
+[ec2-user@ip-12-0-14-210 ~]$
+
+
+[ec2-user@ip-12-0-14-210 ~]$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  7164  100  7164    0     0  35117      0 --:--:-- --:--:-- --:--:-- 35117
+[ec2-user@ip-12-0-14-210 ~]$ chmod +x install-helm.sh
+[ec2-user@ip-12-0-14-210 ~]$ ./install-helm.sh
+Helm v2.16.1 is already latest
+Run 'helm init' to configure helm.
+[ec2-user@ip-12-0-14-210 ~]$ helm init
+$HELM_HOME has been configured at /home/ec2-user/.helm.
+Warning: Tiller is already installed in the cluster.
+(Use --client-only to suppress this message, or --upgrade to upgrade Tiller to the current version.)
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get pod -n kube-system
+NAME                                                                 READY   STATUS     RESTARTS   AGE
+calico-kube-controllers-5ff44ccbd9-w89mj                             1/1     Running    0          41s
+calico-node-7p5gl                                                    1/1     Running    0          39s
+calico-node-qcnjz                                                    1/1     Running    0          42s
+calico-node-rq4f6                                                    0/1     Init:0/3   0          0s
+coredns-85c87dc674-v6q8x                                             0/1     Pending    0          44s
+coredns-autoscaler-78647fb6c6-f4f9l                                  0/1     Pending    0          44s
+dns-controller-6b568dfbb4-mdw9z                                      1/1     Running    0          42s
+etcd-manager-events-ip-12-0-120-150.ap-south-1.compute.internal      1/1     Running    0          19s
+etcd-manager-events-ip-12-0-64-211.ap-south-1.compute.internal       1/1     Running    0          11s
+etcd-manager-main-ip-12-0-64-211.ap-south-1.compute.internal         1/1     Running    0          19s
+kube-apiserver-ip-12-0-120-150.ap-south-1.compute.internal           0/1     Pending    0          2s
+kube-controller-manager-ip-12-0-64-211.ap-south-1.compute.internal   1/1     Running    0          24s
+kube-proxy-ip-12-0-64-211.ap-south-1.compute.internal                0/1     Pending    0          0s
+tiller-deploy-7c4c5bb485-hh5k2                                       0/1     Pending    0          41s
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get pod -n kube-system
+NAME                                                                  READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-5ff44ccbd9-w89mj                              1/1     Running   0          83s
+calico-node-7p5gl                                                     1/1     Running   0          81s
+calico-node-qcnjz                                                     1/1     Running   0          84s
+calico-node-rq4f6                                                     1/1     Running   0          42s
+coredns-85c87dc674-v6q8x                                              0/1     Pending   0          86s
+coredns-autoscaler-78647fb6c6-f4f9l                                   0/1     Pending   0          86s
+dns-controller-6b568dfbb4-mdw9z                                       1/1     Running   0          84s
+etcd-manager-events-ip-12-0-120-150.ap-south-1.compute.internal       1/1     Running   0          61s
+etcd-manager-events-ip-12-0-42-13.ap-south-1.compute.internal         1/1     Running   0          15s
+etcd-manager-events-ip-12-0-64-211.ap-south-1.compute.internal        1/1     Running   0          53s
+etcd-manager-main-ip-12-0-120-150.ap-south-1.compute.internal         1/1     Running   0          13s
+etcd-manager-main-ip-12-0-64-211.ap-south-1.compute.internal          1/1     Running   0          61s
+kube-apiserver-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running   3          44s
+kube-apiserver-ip-12-0-64-211.ap-south-1.compute.internal             1/1     Running   3          36s
+kube-controller-manager-ip-12-0-120-150.ap-south-1.compute.internal   1/1     Running   0          34s
+kube-controller-manager-ip-12-0-42-13.ap-south-1.compute.internal     1/1     Running   0          39s
+kube-controller-manager-ip-12-0-64-211.ap-south-1.compute.internal    1/1     Running   0          66s
+kube-proxy-ip-12-0-120-150.ap-south-1.compute.internal                1/1     Running   0          23s
+kube-proxy-ip-12-0-42-13.ap-south-1.compute.internal                  1/1     Running   0          22s
+kube-proxy-ip-12-0-64-211.ap-south-1.compute.internal                 1/1     Running   0          42s
+kube-scheduler-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running   0          38s
+kube-scheduler-ip-12-0-42-13.ap-south-1.compute.internal              1/1     Running   0          30s
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get pod -n kube-system
+NAME                                                                  READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-5ff44ccbd9-w89mj                              1/1     Running   0          2m27s
+calico-node-7p5gl                                                     1/1     Running   0          2m25s
+calico-node-bkxgw                                                     1/1     Running   0          44s
+calico-node-hcvxh                                                     1/1     Running   0          58s
+calico-node-qcnjz                                                     1/1     Running   0          2m28s
+calico-node-rq4f6                                                     1/1     Running   0          106s
+calico-node-xwdzv                                                     1/1     Running   0          58s
+coredns-85c87dc674-kmlv9                                              1/1     Running   0          31s
+coredns-85c87dc674-v6q8x                                              1/1     Running   0          2m30s
+coredns-autoscaler-78647fb6c6-f4f9l                                   1/1     Running   0          2m30s
+dns-controller-6b568dfbb4-mdw9z                                       1/1     Running   0          2m28s
+etcd-manager-events-ip-12-0-120-150.ap-south-1.compute.internal       1/1     Running   0          2m5s
+etcd-manager-events-ip-12-0-42-13.ap-south-1.compute.internal         1/1     Running   0          79s
+etcd-manager-events-ip-12-0-64-211.ap-south-1.compute.internal        1/1     Running   0          117s
+etcd-manager-main-ip-12-0-120-150.ap-south-1.compute.internal         1/1     Running   0          77s
+etcd-manager-main-ip-12-0-42-13.ap-south-1.compute.internal           1/1     Running   0          49s
+etcd-manager-main-ip-12-0-64-211.ap-south-1.compute.internal          1/1     Running   0          2m5s
+kube-apiserver-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running   3          108s
+kube-apiserver-ip-12-0-42-13.ap-south-1.compute.internal              1/1     Running   3          32s
+kube-apiserver-ip-12-0-64-211.ap-south-1.compute.internal             1/1     Running   3          100s
+kube-controller-manager-ip-12-0-120-150.ap-south-1.compute.internal   1/1     Running   0          98s
+kube-controller-manager-ip-12-0-42-13.ap-south-1.compute.internal     1/1     Running   0          103s
+kube-controller-manager-ip-12-0-64-211.ap-south-1.compute.internal    1/1     Running   0          2m10s
+kube-proxy-ip-12-0-120-150.ap-south-1.compute.internal                1/1     Running   0          87s
+kube-proxy-ip-12-0-123-241.ap-south-1.compute.internal                1/1     Running   0          19s
+kube-proxy-ip-12-0-42-13.ap-south-1.compute.internal                  1/1     Running   0          86s
+kube-proxy-ip-12-0-62-205.ap-south-1.compute.internal                 1/1     Running   0          15s
+kube-proxy-ip-12-0-64-211.ap-south-1.compute.internal                 1/1     Running   0          106s
+kube-scheduler-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running   0          102s
+kube-scheduler-ip-12-0-42-13.ap-south-1.compute.internal              1/1     Running   0          94s
+kube-scheduler-ip-12-0-64-211.ap-south-1.compute.internal             1/1     Running   0          91s
+tiller-deploy-7c4c5bb485-hh5k2                                        1/1     Running   0          2m27s
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Skip local chart repository
+...Successfully got an update from the "stable" chart repository
+Update Complete.
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ helm install stable/mysql --name my-mysql-install --set mysqlPassword=cloudredhat
+Error: release my-mysql-install failed: namespaces "default" is forbidden: User "system:serviceaccount:kube-system:default" cannot get resource "namespaces" in API group "" in the namespace "default"
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ kubectl create serviceaccount --namespace kube-system tiller
+serviceaccount/tiller created
+[ec2-user@ip-12-0-14-210 ~]$ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+clusterrolebinding.rbac.authorization.k8s.io/tiller-cluster-rule created
+[ec2-user@ip-12-0-14-210 ~]$ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+deployment.extensions/tiller-deploy patched
+[ec2-user@ip-12-0-14-210 ~]$ helm ls
+Error: configmaps is forbidden: User "system:serviceaccount:kube-system:default" cannot list resource "configmaps" in API group "" in the namespace "kube-system"
+
+[ec2-user@ip-12-0-14-210 ~]$ helm install stable/mysql --name my-mysql-install --set mysqlPassword=cloudredhat
+NAME:   my-mysql-install
+LAST DEPLOYED: Fri Jan  3 05:11:42 2020
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/ConfigMap
+NAME                   AGE
+my-mysql-install-test  0s
+
+==> v1/Deployment
+NAME              AGE
+my-mysql-install  0s
+
+==> v1/PersistentVolumeClaim
+NAME              AGE
+my-mysql-install  0s
+
+==> v1/Pod(related)
+NAME                               AGE
+my-mysql-install-6f896cfb8f-n7ssv  0s
+
+==> v1/Secret
+NAME              AGE
+my-mysql-install  0s
+
+==> v1/Service
+NAME              AGE
+my-mysql-install  0s
+
+
+NOTES:
+MySQL can be accessed via port 3306 on the following DNS name from within your cluster:
+my-mysql-install.default.svc.cluster.local
+
+To get your root password run:
+
+    MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace default my-mysql-install -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo)
+
+To connect to your database:
+
+1. Run an Ubuntu pod that you can use as a client:
+
+    kubectl run -i --tty ubuntu --image=ubuntu:16.04 --restart=Never -- bash -il
+
+2. Install the mysql client:
+
+    $ apt-get update && apt-get install mysql-client -y
+
+3. Connect using the mysql cli, then provide your password:
+    $ mysql -h my-mysql-install -p
+
+To connect to your database directly from outside the K8s cluster:
+    MYSQL_HOST=127.0.0.1
+    MYSQL_PORT=3306
+
+    # Execute the following command to route the connection:
+    kubectl port-forward svc/my-mysql-install 3306
+
+    mysql -h ${MYSQL_HOST} -P${MYSQL_PORT} -u root -p${MYSQL_ROOT_PASSWORD}
+
+
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl create namespace monitoring
+Error from server (AlreadyExists): namespaces "monitoring" already exists
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get namespace
+NAME          STATUS   AGE
+default       Active   24m
+kube-public   Active   24m
+kube-system   Active   24m
+monitoring    Active   119s
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ helm install --name monitoring --namespace monitoring stable/prometheus-operator
+Error: a release named monitoring already exists.
+Run: helm ls --all monitoring; to check the status of the release
+Or run: helm del --purge monitoring; to delete it
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ helm ls --all
+NAME                    REVISION        UPDATED                         STATUS          CHART                                            APP VERSION      NAMESPACE
+monitoring              1               Fri Jan  3 05:24:36 2020        DEPLOYED        prometheus-operator-8.5.1                        0.34.0           monitoring
+my-mysql-install        1               Fri Jan  3 05:11:42 2020        DELETED         mysql-1.6.2                                      5.7.28           default
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get all -namespace monitoring
+error: you must specify only one resource
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get all --namespace monitoring
+NAME                                                         READY   STATUS    RESTARTS   AGE
+pod/alertmanager-monitoring-prometheus-oper-alertmanager-0   2/2     Running   0          4m
+pod/monitoring-grafana-76c7ff6545-nb7wl                      2/2     Running   0          4m20s
+pod/monitoring-kube-state-metrics-6769d4bc56-kvlqr           1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-2pmll                1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-9vszz                1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-ddckt                1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-hn76w                1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-l4xwm                1/1     Running   0          4m20s
+pod/monitoring-prometheus-node-exporter-r4957                1/1     Running   0          4m20s
+pod/monitoring-prometheus-oper-operator-676c96954c-6226q     2/2     Running   0          4m20s
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ helm ls --all
+NAME                    REVISION        UPDATED                         STATUS          CHART                                            APP VERSION      NAMESPACE
+monitoring              1               Fri Jan  3 05:24:36 2020        DEPLOYED        prometheus-operator-8.5.1                        0.34.0           monitoring
+my-mysql-install        1               Fri Jan  3 05:11:42 2020        DELETED         mysql-1.6.2                                      5.7.28           default
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl get all --namespace monitoring
+NAME                                                         READY   STATUS    RESTARTS   AGE
+pod/alertmanager-monitoring-prometheus-oper-alertmanager-0   2/2     Running   0          5m6s
+pod/monitoring-grafana-76c7ff6545-nb7wl                      2/2     Running   0          5m26s
+pod/monitoring-kube-state-metrics-6769d4bc56-kvlqr           1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-2pmll                1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-9vszz                1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-ddckt                1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-hn76w                1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-l4xwm                1/1     Running   0          5m26s
+pod/monitoring-prometheus-node-exporter-r4957                1/1     Running   0          5m26s
+pod/monitoring-prometheus-oper-operator-676c96954c-6226q     2/2     Running   0          5m26s
+pod/prometheus-monitoring-prometheus-oper-prometheus-0       3/3     Running   1          4m56s
+
+NAME                                              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+service/alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   5m6s
+service/monitoring-grafana                        ClusterIP   100.71.249.233   <none>        80/TCP                       5m26s
+service/monitoring-kube-state-metrics             ClusterIP   100.67.210.87    <none>        8080/TCP                     5m26s
+service/monitoring-prometheus-node-exporter       ClusterIP   100.64.122.38    <none>        9100/TCP                     5m26s
+service/monitoring-prometheus-oper-alertmanager   ClusterIP   100.68.254.29    <none>        9093/TCP                     5m26s
+service/monitoring-prometheus-oper-operator       ClusterIP   100.68.63.27     <none>        8080/TCP,443/TCP             5m26s
+service/monitoring-prometheus-oper-prometheus     ClusterIP   100.67.38.254    <none>        9090/TCP                     5m26s
+service/prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     4m56s
+
+NAME                                                 DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/monitoring-prometheus-node-exporter   6         6         6       6            6           <none>          5m26s
+
+NAME                                                  READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/monitoring-grafana                    1/1     1            1           5m26s
+deployment.apps/monitoring-kube-state-metrics         1/1     1            1           5m26s
+deployment.apps/monitoring-prometheus-oper-operator   1/1     1            1           5m26s
+
+NAME                                                             DESIRED   CURRENT   READY   AGE
+replicaset.apps/monitoring-grafana-76c7ff6545                    1         1         1       5m26s
+replicaset.apps/monitoring-kube-state-metrics-6769d4bc56         1         1         1       5m26s
+replicaset.apps/monitoring-prometheus-oper-operator-676c96954c   1         1         1       5m26s
+
+NAME                                                                    READY   AGE
+statefulset.apps/alertmanager-monitoring-prometheus-oper-alertmanager   1/1     5m6s
+statefulset.apps/prometheus-monitoring-prometheus-oper-prometheus       1/1     4m56s
+[ec2-user@ip-12-0-14-210 ~]$
+
+[ec2-user@ip-12-0-14-210 ~]$ kubectl --namespace monitoring get pods -l "release=monitoring"
+NAME                                                   READY   STATUS    RESTARTS   AGE
+monitoring-grafana-76c7ff6545-nb7wl                    2/2     Running   0          7m51s
+monitoring-prometheus-node-exporter-2pmll              1/1     Running   0          7m51s
+monitoring-prometheus-node-exporter-9vszz              1/1     Running   0          7m51s
+monitoring-prometheus-node-exporter-ddckt              1/1     Running   0          7m51s
+monitoring-prometheus-node-exporter-hn76w              1/1     Running   0          7m51s
+monitoring-prometheus-node-exporter-l4xwm              1/1     Running   0          7m51s
+monitoring-prometheus-node-exporter-r4957              1/1     Running   0          7m51s
+monitoring-prometheus-oper-operator-676c96954c-6226q   2/2     Running   0          7m51s
+[ec2-user@ip-12-0-14-210 ~]$
+[ec2-user@ip-12-0-14-210 ~]$ kubectl describe svc monitoring-prometheus-oper-prometheus -n monitoring
+Name:                     monitoring-prometheus-oper-prometheus
+Namespace:                monitoring
+Labels:                   app=prometheus-operator-prometheus
+                          chart=prometheus-operator-8.5.1
+                          heritage=Tiller
+                          release=monitoring
+                          self-monitor=true
+Annotations:              service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+Selector:                 app=prometheus,prometheus=monitoring-prometheus-oper-prometheus
+Type:                     LoadBalancer
+IP:                       100.67.38.254
+LoadBalancer Ingress:     internal-a793942042de911eaa63c0a8ffb89ebc-584442748.ap-south-1.elb.amazonaws.com
+Port:                     web  9090/TCP
+TargetPort:               9090/TCP
+NodePort:                 web  30622/TCP
+Endpoints:                100.107.122.5:9090
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type     Reason                      Age                   From                Message
+  ----     ------                      ----                  ----                -------
+  Normal   Type                        36m                   service-controller  ClusterIP -> LoadBalancer
+  Normal   Type                        18m                   service-controller  LoadBalancer -> NodePort
+  Normal   Type                        16m                   service-controller  NodePort -> LoadBalancer
+  Warning  CreatingLoadBalancerFailed  15m (x13 over 36m)    service-controller  Error creating load balancer (will retry): failed to ensure load balancer for service monitoring/monitoring-prometheus-oper-prometheus: could not find any suitable subnets for creating the ELB     Normal   EnsuringLoadBalancer        5m58s (x17 over 36m)  service-controller  Ensuring load balancer
+[ec2-user@ip-12-0-14-210 ~]$
+
+
+
+
+
+[ec2-user@ip-12-0-14-210 ELK]$ kubectl get all -n kube-system
+NAME                                                                      READY   STATUS              RESTARTS   AGE
+pod/calico-kube-controllers-5ff44ccbd9-w89mj                              1/1     Running             0          4h20m
+pod/calico-node-7p5gl                                                     1/1     Running             0          4h19m
+pod/calico-node-bkxgw                                                     1/1     Running             0          4h18m
+pod/calico-node-hcvxh                                                     1/1     Running             0          4h18m
+pod/calico-node-qcnjz                                                     1/1     Running             0          4h20m
+pod/calico-node-rq4f6                                                     1/1     Running             0          4h19m
+pod/calico-node-xwdzv                                                     1/1     Running             0          4h18m
+pod/coredns-85c87dc674-kmlv9                                              1/1     Running             0          4h18m
+pod/coredns-85c87dc674-v6q8x                                              1/1     Running             0          4h20m
+pod/coredns-autoscaler-78647fb6c6-f4f9l                                   1/1     Running             0          4h20m
+pod/dns-controller-6b568dfbb4-mdw9z                                       1/1     Running             0          4h20m
+pod/elasticsearch-logging-0                                               0/1     Pending             0          27s
+pod/etcd-manager-events-ip-12-0-120-150.ap-south-1.compute.internal       1/1     Running             0          4h19m
+pod/etcd-manager-events-ip-12-0-42-13.ap-south-1.compute.internal         1/1     Running             0          4h18m
+pod/etcd-manager-events-ip-12-0-64-211.ap-south-1.compute.internal        1/1     Running             0          4h19m
+pod/etcd-manager-main-ip-12-0-120-150.ap-south-1.compute.internal         1/1     Running             0          4h18m
+pod/etcd-manager-main-ip-12-0-42-13.ap-south-1.compute.internal           1/1     Running             0          4h18m
+pod/etcd-manager-main-ip-12-0-64-211.ap-south-1.compute.internal          1/1     Running             0          4h19m
+pod/fluentd-es-v2.2.0-gb64r                                               0/1     ContainerCreating   0          27s
+pod/fluentd-es-v2.2.0-hbw5c                                               1/1     Running             0          27s
+pod/fluentd-es-v2.2.0-zqgm5                                               1/1     Running             0          27s
+pod/kibana-logging-6d8c7c9fff-cjdn5                                       1/1     Running             0          27s
+pod/kube-apiserver-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running             3          4h19m
+pod/kube-apiserver-ip-12-0-42-13.ap-south-1.compute.internal              1/1     Running             3          4h18m
+pod/kube-apiserver-ip-12-0-64-211.ap-south-1.compute.internal             1/1     Running             3          4h19m
+pod/kube-controller-manager-ip-12-0-120-150.ap-south-1.compute.internal   1/1     Running             0          4h19m
+pod/kube-controller-manager-ip-12-0-42-13.ap-south-1.compute.internal     1/1     Running             0          4h19m
+pod/kube-controller-manager-ip-12-0-64-211.ap-south-1.compute.internal    1/1     Running             0          4h19m
+pod/kube-proxy-ip-12-0-120-150.ap-south-1.compute.internal                1/1     Running             0          4h19m
+pod/kube-proxy-ip-12-0-123-241.ap-south-1.compute.internal                1/1     Running             0          4h17m
+pod/kube-proxy-ip-12-0-42-13.ap-south-1.compute.internal                  1/1     Running             0          4h18m
+pod/kube-proxy-ip-12-0-62-205.ap-south-1.compute.internal                 1/1     Running             0          4h17m
+pod/kube-proxy-ip-12-0-64-211.ap-south-1.compute.internal                 1/1     Running             0          4h19m
+pod/kube-proxy-ip-12-0-66-50.ap-south-1.compute.internal                  1/1     Running             0          4h17m
+pod/kube-scheduler-ip-12-0-120-150.ap-south-1.compute.internal            1/1     Running             0          4h19m
+pod/kube-scheduler-ip-12-0-42-13.ap-south-1.compute.internal              1/1     Running             0          4h19m
+pod/kube-scheduler-ip-12-0-64-211.ap-south-1.compute.internal             1/1     Running             0          4h19m
+pod/tiller-deploy-85d786df69-bqbhg                                        1/1     Running             0          4h11m
+
+NAME                                                         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE   service/elasticsearch-logging                                ClusterIP      100.68.145.201   <none>        9200/TCP                 27s   service/kibana-logging                                       LoadBalancer   100.69.148.244   <pending>     5601:32450/TCP           27s   service/kube-dns                                             ClusterIP      100.64.0.10      <none>        53/UDP,53/TCP,9153/TCP   4h20m
+service/monitoring-prometheus-oper-coredns                   ClusterIP      None             <none>        9153/TCP                 3h57m service/monitoring-prometheus-oper-kube-controller-manager   ClusterIP      None             <none>        10252/TCP                3h57m service/monitoring-prometheus-oper-kube-etcd                 ClusterIP      None             <none>        2379/TCP                 3h57m service/monitoring-prometheus-oper-kube-proxy                ClusterIP      None             <none>        10249/TCP                3h57m service/monitoring-prometheus-oper-kube-scheduler            ClusterIP      None             <none>        10251/TCP                3h57m service/monitoring-prometheus-oper-kubelet                   ClusterIP      None             <none>        10250/TCP                3h56m service/tiller-deploy                                        ClusterIP      100.66.243.73    <none>        44134/TCP                4h20m 
+NAME                               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE
+daemonset.apps/calico-node         6         6         6       6            6           beta.kubernetes.io/os=linux   4h20m
+daemonset.apps/fluentd-es-v2.2.0   3         3         2       3            2           <none>                        27s
+
+NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/calico-kube-controllers   1/1     1            1           4h20m
+deployment.apps/coredns                   2/2     2            2           4h20m
+deployment.apps/coredns-autoscaler        1/1     1            1           4h20m
+deployment.apps/dns-controller            1/1     1            1           4h20m
+deployment.apps/kibana-logging            1/1     1            1           27s
+deployment.apps/tiller-deploy             1/1     1            1           4h20m
+
+NAME                                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/calico-kube-controllers-5ff44ccbd9   1         1         1       4h20m
+replicaset.apps/coredns-85c87dc674                   2         2         2       4h20m
+replicaset.apps/coredns-autoscaler-78647fb6c6        1         1         1       4h20m
+replicaset.apps/dns-controller-6b568dfbb4            1         1         1       4h20m
+replicaset.apps/kibana-logging-6d8c7c9fff            1         1         1       27s
+replicaset.apps/tiller-deploy-7c4c5bb485             0         0         0       4h20m
+replicaset.apps/tiller-deploy-85d786df69             1         1         1       4h11m
+
+NAME                                     READY   AGE
+statefulset.apps/elasticsearch-logging   0/2     27s
+[ec2-user@ip-12-0-14-210 ELK]$
+
+
+@@@@@@@@@@@@@@@@@@@@@@@
+
+[ec2-user@ip-12-0-14-210 ~]$ helm repo add elastic https://helm.elastic.co
+"elastic" has been added to your repositories
+[ec2-user@ip-12-0-14-210 ~]$ helm install --name elasticsearch elastic/elasticsearch
+NAME:   elasticsearch
+LAST DEPLOYED: Fri Jan  3 10:34:06 2020
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Pod(related)
+NAME                    AGE
+elasticsearch-master-0  0s
+elasticsearch-master-1  0s
+
+==> v1/Service
+NAME                           AGE
+elasticsearch-master           0s
+elasticsearch-master-headless  0s
+
+==> v1/StatefulSet
+NAME                  AGE
+elasticsearch-master  0s
+
+==> v1beta1/PodDisruptionBudget
+NAME                      AGE
+elasticsearch-master-pdb  0s
+
+
+NOTES:
+1. Watch all cluster members come up.
+  $ kubectl get pods --namespace=default -l app=elasticsearch-master -w
+2. Test cluster health using Helm test.
+  $ helm test elasticsearch
+
+[ec2-user@ip-12-0-14-210 ~]$

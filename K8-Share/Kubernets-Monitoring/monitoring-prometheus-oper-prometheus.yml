@@ -1,0 +1,37 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  creationTimestamp: "2020-01-03T05:25:37Z"
+  labels:
+    app: prometheus-operator-prometheus
+    chart: prometheus-operator-8.5.1
+    heritage: Tiller
+    release: monitoring
+    self-monitor: "true"
+  name: monitoring-prometheus-oper-prometheus
+  namespace: monitoring
+  resourceVersion: "7499"
+  selfLink: /api/v1/namespaces/monitoring/services/monitoring-prometheus-oper-prometheus
+  uid: 79394204-2de9-11ea-a63c-0a8ffb89ebc2
+spec:
+  clusterIP: 100.67.38.254
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: web
+    nodePort: 30622
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: prometheus
+    prometheus: monitoring-prometheus-oper-prometheus
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

@@ -1,0 +1,34 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  creationTimestamp: "2020-01-03T05:25:37Z"
+  labels:
+    app: grafana
+    chart: grafana-4.2.2
+    heritage: Tiller
+    release: monitoring
+  name: monitoring-grafana
+  namespace: monitoring
+  resourceVersion: "3559"
+  selfLink: /api/v1/namespaces/monitoring/services/monitoring-grafana
+  uid: 793b0355-2de9-11ea-a63c-0a8ffb89ebc2
+spec:
+  clusterIP: 100.71.249.233
+  ports:
+  - name: service
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: grafana
+    release: monitoring
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

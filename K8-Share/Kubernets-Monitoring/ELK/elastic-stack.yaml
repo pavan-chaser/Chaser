@@ -1,0 +1,13 @@
+logstash:
+  enabled: true
+  elasticsearch:
+    host: elastic-stack-elasticsearch-client
+ 
+filebeat:
+  enabled: true
+  config:
+    output.file.enabled: false
+    output.logstash:
+      hosts: ["elastic-stack-logstash:5044"]
+  indexTemplateLoad:
+    - elastic-stack-elasticsearch-client:9200

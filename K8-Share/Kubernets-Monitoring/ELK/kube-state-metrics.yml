@@ -1,0 +1,34 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+  creationTimestamp: "2020-01-03T17:11:47Z"
+  labels:
+    app.kubernetes.io/instance: kube-state-metrics
+    app.kubernetes.io/managed-by: Tiller
+    app.kubernetes.io/name: kube-state-metrics
+    helm.sh/chart: kube-state-metrics-2.6.0
+  name: kube-state-metrics
+  namespace: default
+  resourceVersion: "86791"
+  selfLink: /api/v1/namespaces/default/services/kube-state-metrics
+  uid: 200e155a-2e4c-11ea-a63c-0a8ffb89ebc2
+spec:
+  clusterIP: 100.64.226.122
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: kube-state-metrics
+    app.kubernetes.io/name: kube-state-metrics
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

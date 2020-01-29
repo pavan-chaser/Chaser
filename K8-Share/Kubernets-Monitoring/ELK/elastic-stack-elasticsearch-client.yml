@@ -1,0 +1,34 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-01-03T16:40:42Z"
+  labels:
+    app: elasticsearch
+    chart: elasticsearch-1.29.0
+    component: client
+    heritage: Tiller
+    release: elastic-stack
+  name: elastic-stack-elasticsearch-client
+  namespace: default
+  resourceVersion: "82972"
+  selfLink: /api/v1/namespaces/default/services/elastic-stack-elasticsearch-client
+  uid: c850f785-2e47-11ea-9b76-026e367e89d6
+spec:
+  clusterIP: 100.64.195.25
+  ports:
+  - name: http
+    port: 9200
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: elasticsearch
+    component: client
+    release: elastic-stack
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

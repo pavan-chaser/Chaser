@@ -1,0 +1,223 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2018-03-17T09:37:40Z
+  name: kops-prod.etechbrain.com
+spec:
+  additionalPolicies:
+    node: |
+      [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "autoscaling:DescribeAutoScalingGroups",
+            "autoscaling:DescribeAutoScalingInstances",
+            "autoscaling:DescribeTags",
+            "autoscaling:DescribeLaunchConfigurations",
+            "autoscaling:SetDesiredCapacity",
+            "autoscaling:TerminateInstanceInAutoScalingGroup"
+          ],
+          "Resource": "*"
+        }
+      ]
+  api:
+    loadBalancer:
+      type: Internal
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://clusters.kubernetes.etechbrain.com/kops-prod.etechbrain.com
+  dnsZone: kops-prod.etechbrain.com
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-ap-south-1a
+      name: a
+    - instanceGroup: master-ap-south-1b
+      name: b
+    - instanceGroup: master-ap-south-1c
+      name: c
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-ap-south-1a
+      name: a
+    - instanceGroup: master-ap-south-1b
+      name: b
+    - instanceGroup: master-ap-south-1c
+      name: c
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubeDNS:
+    provider: CoreDNS
+  kubelet:
+    featureGates:
+      ExpandPersistentVolumes: "true"
+      PodPriority: "true"
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.13.4
+  masterInternalName: api.internal.kops-prod.etechbrain.com
+  masterPublicName: api.kops-prod.etechbrain.com
+  networkCIDR: 12.0.0.0/16
+  networkID: vpc-0bcee777ac987f2ec
+  networking:
+    calico:
+      logSeverityScreen: warning
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+    - egress: nat-08a488c1e969e12d2
+      id: subnet-039563650803d3481
+      name: ap-south-1a
+      type: Private
+      zone: ap-south-1a
+    - egress: nat-08a488c1e969e12d2
+      id: subnet-08b577f06bdd68505
+      name: ap-south-1b
+      type: Private
+      zone: ap-south-1b
+    - egress: nat-08a488c1e969e12d2
+      id: subnet-060b4213a1442f9f8
+      name: ap-south-1c
+      type: Private
+      zone: ap-south-1c
+    - id: subnet-07908b497098af178
+      name: utility-ap-south-1a
+      type: Utility
+      zone: ap-south-1a
+    - id: subnet-0e22ee78812492194
+      name: utility-ap-south-1b
+      type: Utility
+      zone: ap-south-1b
+    - id: subnet-0f4d67b51c2bc8ac0
+      name: utility-ap-south-1c
+      type: Utility
+      zone: ap-south-1c
+  topology:
+    dns:
+      type: Public
+    masters: private
+    nodes: private
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-03-12T09:37:40Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: master-ap-south-1a
+spec:
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.large
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-ap-south-1a
+  role: Master
+  subnets:
+  - ap-south-1a
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-03-12T09:37:41Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: master-ap-south-1b
+spec:
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.large
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-ap-south-1b
+  role: Master
+  subnets:
+  - ap-south-1b
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-03-12T09:37:41Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: master-ap-south-1c
+spec:
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.large
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-ap-south-1c
+  role: Master
+  subnets:
+  - ap-south-1c
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-08-08T13:35:12Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: nodes-ap-south-1a
+spec:
+  cloudLabels:
+    k8s.io/cluster-autoscaler/enabled: "true"
+    kubernetes.io/cluster/kops-prod.etechbrain.com: "true"
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.xlarge
+  maxPrice: "0.22"
+  maxSize: 5
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes-ap-south-1a
+  role: Node
+  subnets:
+  - ap-south-1a
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-08-08T13:35:12Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: nodes-ap-south-1b
+spec:
+  cloudLabels:
+    k8s.io/cluster-autoscaler/enabled: "true"
+    kubernetes.io/cluster/kops-prod.etechbrain.com: "true"
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.xlarge
+  maxPrice: "0.22"
+  maxSize: 5
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes-ap-south-1b
+  role: Node
+  subnets:
+  - ap-south-1b
+---
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-08-08T13:35:13Z
+  labels:
+    kops.k8s.io/cluster: kops-prod.etechbrain.com
+  name: nodes-ap-south-1c
+spec:
+  cloudLabels:
+    k8s.io/cluster-autoscaler/enabled: "true"
+    kubernetes.io/cluster/kops-prod.etechbrain.com: "true"
+  image: kope.io/k8s-1.11-debian-stretch-amd64-hvm-ebs-2018-08-17
+  machineType: m5.xlarge
+  maxPrice: "0.22"
+  maxSize: 5
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes-ap-south-1c
+  role: Node
+  subnets:
+  - ap-south-1c

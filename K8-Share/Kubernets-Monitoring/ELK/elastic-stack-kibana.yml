@@ -1,0 +1,35 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  creationTimestamp: "2020-01-03T16:40:42Z"
+  labels:
+    app: kibana
+    chart: kibana-3.2.1
+    heritage: Tiller
+    release: elastic-stack
+  name: elastic-stack-kibana
+  namespace: default
+  resourceVersion: "86187"
+  selfLink: /api/v1/namespaces/default/services/elastic-stack-kibana
+  uid: c854290b-2e47-11ea-9b76-026e367e89d6
+spec:
+  clusterIP: 100.69.223.7
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 31537
+    port: 5601
+    protocol: TCP
+    targetPort: 5601
+  selector:
+    app: kibana
+    release: elastic-stack
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
